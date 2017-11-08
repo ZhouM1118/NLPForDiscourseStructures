@@ -31,6 +31,15 @@ for tag in tagged:
         i_2 += 1
 print(1) if i_1 >= i_2 else print(2)
 
+indicators = configs['indicators']
+indicatorsSet = set()
+
+for i in indicators:
+    indicatorsSet.add(i)
+
+print(len(indicators))
+print(len(indicatorsSet))
+
 # 构建分析树
 # entities = nltk.chunk.ne_chunk(tagged)
 # print(entities)

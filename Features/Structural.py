@@ -53,6 +53,7 @@ def getParseTreeDepth(sentence):
         return 0
     return tree.height()
 
+# 获取句子时态特征
 def getSentenceTense(sentence):
     #分词
     tokens = nltk.word_tokenize(sentence)
@@ -80,16 +81,23 @@ while i <= 6:
 
     for index in range(len(sentences)):
 
-        rows.append((readSheet.cell(row=i, column=1).value,
-                     readSheet.cell(row=i, column=2).value,
-                     readSheet.cell(row=i, column=3).value,
-                     readSheet.cell(row=i, column=4).value,
-                     readSheet.cell(row=i, column=8).value,
-                     sentences[index], tags[index],
-                     getWordCountAndPunctuation(sentences[index])[0],
-                     getWordCountAndPunctuation(sentences[index])[1],
-                     index, getParseTreeDepth(sentences[index]),
-                     getSentenceTense(sentences[index])))
+        row = [readSheet.cell(row=i, column=1).value,
+               readSheet.cell(row=i, column=2).value,
+               readSheet.cell(row=i, column=3).value,
+               readSheet.cell(row=i, column=4).value,
+               readSheet.cell(row=i, column=8).value,
+               sentences[index], tags[index],
+               getWordCountAndPunctuation(sentences[index])[0],
+               getWordCountAndPunctuation(sentences[index])[1],
+               index, getParseTreeDepth(sentences[index]),
+               getSentenceTense(sentences[index])]
+
+        for indicator in configs['indicators']:
+            row.append(1) if indicator in sentences[index] \
+                             or indicator.capitalize() in sentences[index] else row.append(0)
+
+        rows.append(row)
+
     i+=1
 
 for row in rows:

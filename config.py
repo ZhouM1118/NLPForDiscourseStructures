@@ -26,5 +26,20 @@ configs = {
         'VBG' : 1,
         'VBN' : 2,
         'VBD' : 2
-    }
+    },
+    'indicators' : ('accordingly', 'additionally', 'after', 'afterward', 'also', 'alternatively',
+                    'alternative', 'although', 'as a result', 'as an alternative', 'as if', 'as long as',
+                    'as soon as', 'as though', 'as well', 'because', 'before', 'before and after',
+                    'besides', 'by comparison',  'but', 'by contrast', 'by then', 'consequently',
+                    'conversely', 'earlier', 'either', 'except', 'finally', 'for example', 'for instance',
+                    'further', 'furthermore','hence', 'however', 'if', 'if and when', 'in addition',
+                    'in contrast', 'in fact', 'in other words',  'in particular', 'in short', 'in sum',
+                    'in the end', 'in turn', 'indeed', 'insofar as', 'instead', 'later', 'lest',
+                    'likewise', 'meantime', 'meanwhile', 'moreover', 'much as', 'neither',
+                    'nevertheless', 'now that', 'next', 'nonetheless', 'nor', 'on the contrary', 'on the one hand',
+                    'on the other hand', 'once', 'otherwise', 'overall', 'plus', 'previously', 'rather', 'regardless',
+                    'separately', 'similarly', 'simultaneously', 'since', 'so that', 'specifically',
+                    'still', 'then', 'thereafter', 'thereby', 'therefore', 'though', 'thus',
+                    'till', 'ultimately', 'unless', 'until', 'when', 'when and if', 'whereas', 'while',
+                    'yet')
 }
