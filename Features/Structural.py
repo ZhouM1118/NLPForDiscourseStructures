@@ -22,11 +22,13 @@ readSheet = readBook.active
 writeBook = openpyxl.load_workbook(configs['extractFeaturesPath'])
 writeSheet = writeBook.active
 
+# 分割不带标签的句子
 def segregateSentence(paraContent):
     sent_tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
     sentences = sent_tokenizer.tokenize(paraContent)
     return sentences
 
+# 分割带标签的句子
 def segregateSentenceTag(paraContentTag):
     sentencesTag = re.split(r'(<[A-Z]{2,4}>)', paraContentTag)
     result = []
@@ -37,17 +39,35 @@ def segregateSentenceTag(paraContentTag):
             result.append(configs['Tags'][sentencesTag[index]])
     return result
 
-def getWordCount(sentence):
+# 获取一个句子中的单词个数以及句子的标点符号
+def getWordCountAndPunctuation(sentence):
     words = re.split(r"\s+", sentence)
     return  len(words), words[-1][-1]
     #return len(nltk.word_tokenize(sentence))
 
+# 获取一个句子的分析树的深度
 def getParseTreeDepth(sentence):
     trees = parser.raw_parse(sentence)
     tree = next(trees)
     if tree is None:
         return 0
     return tree.height()
+
+def getSentenceTense(sentence):
+    #分词
+    tokens = nltk.word_tokenize(sentence)
+    #词性标注
+    tags = nltk.pos_tag(tokens)
+    i_1 = 0
+    i_2 = 0
+    for tag in tags:
+        if tag[1] not in configs['tense']:
+            continue
+        elif configs['tense'][tag[1]] == 1:
+            i_1 += 1
+        elif configs['tense'][tag[1]] == 2:
+            i_2 += 1
+    return 1 if i_1 >= i_2 else 2
 
 rows = []
 i = 2
@@ -66,9 +86,10 @@ while i <= 6:
                      readSheet.cell(row=i, column=4).value,
                      readSheet.cell(row=i, column=8).value,
                      sentences[index], tags[index],
-                     getWordCount(sentences[index])[0],
-                     getWordCount(sentences[index])[1],
-                     index, getParseTreeDepth(sentences[index])))
+                     getWordCountAndPunctuation(sentences[index])[0],
+                     getWordCountAndPunctuation(sentences[index])[1],
+                     index, getParseTreeDepth(sentences[index]),
+                     getSentenceTense(sentences[index])))
     i+=1
 
 for row in rows:

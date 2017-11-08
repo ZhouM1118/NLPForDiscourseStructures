@@ -3,7 +3,7 @@ from nltk.corpus import treebank
 nltk.data.path.append('/Users/ming.zhou/NLP/Tools/nltk/nltk_data')
 
 # 分割
-sentence = "At eight o'clock on Thursday morning Arthur didn't feel very good."
+sentence = "They desert the treasure in the desert."
 tokens = nltk.word_tokenize(sentence)
 print(tokens)
 
@@ -34,4 +34,4 @@ t1 = parser.parse(tokens)
 for t in parser.parse(tokens):
     print(t.height())
     print(type(t))
-    print(t.draw())
+    # print(t.draw())

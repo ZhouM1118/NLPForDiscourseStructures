@@ -18,5 +18,13 @@ configs = {
     },
     'stanfordParserPath' : '/Users/ming.zhou/NLP/Tools/stanford-parser/stanford-parser-full-2017-06-09/stanford-parser.jar',
     'stanfordParserModelsPath' : '/Users/ming.zhou/NLP/Tools/stanford-parser/stanford-parser-full-2017-06-09/stanford-parser-3.8.0-models.jar',
-    'nltkDataPath' : '/Users/ming.zhou/NLP/Tools/nltk/nltk_data'
+    'nltkDataPath' : '/Users/ming.zhou/NLP/Tools/nltk/nltk_data',
+    'tense' : {
+        'VB' : 1,
+        'VBZ' : 1,
+        'VBP' : 1,
+        'VBG' : 1,
+        'VBN' : 2,
+        'VBD' : 2
+    }
 }
