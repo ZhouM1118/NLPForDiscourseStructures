@@ -1,6 +1,6 @@
 configs = {
-    'extractFeaturesPath' : '/Users/ming.zhou/NLP/datasets/result.xlsx',
-    'dataSetPath' : '/Users/ming.zhou/NLP/datasets/作文评分Sample_LSM_20171102.xlsx',
+    'extractFeaturesPath' : '/Users/ming.zhou/NLP/datasets/Features.xlsx',
+    'dataSetPath' : '/Users/ming.zhou/NLP/datasets/AW_MLParaData.xlsx',
     'Tags' : {
         '<BG>' : 1,
         '<PT>' : 2,
