@@ -41,5 +41,10 @@ configs = {
                     'separately', 'similarly', 'simultaneously', 'since', 'so that', 'specifically',
                     'still', 'then', 'thereafter', 'thereby', 'therefore', 'though', 'thus',
                     'till', 'ultimately', 'unless', 'until', 'when', 'when and if', 'whereas', 'while',
-                    'yet')
+                    'yet'),
+    'punctuation' : {
+        '.' : 1,
+        '?' : 2,
+        '!' : 3
+    }
 }

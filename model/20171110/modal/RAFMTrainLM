@@ -1,0 +1,822 @@
+
+\data\
+ngram 1=229
+ngram 2=477
+ngram 3=103
+
+\1-grams:
+-2.677678	,but	-0.07010531
+-2.677678	,they	-0.07010531
+-1.429842	</s>
+-99	<s>	-0.6584305
+-2.677678	Above	-0.07010531
+-2.677678	All	-0.07010531
+-2.677678	As	-0.07010531
+-2.677678	For	-0.07010531
+-2.677678	From	-0.07010531
+-2.677678	Hence,I	-0.07010531
+-1.790414	I	-0.5417141
+-2.677678	In	-0.07010531
+-2.677678	So	-0.07010531
+-2.677678	So,	-0.07010531
+-2.677678	So,in	-0.07010531
+-2.677678	So,it	-0.07010531
+-2.677678	Taking	-0.07010531
+-2.677678	The	-0.07010531
+-2.677678	Therefore,	-0.07010531
+-2.677678	Therefore,a	-0.07010531
+-2.677678	Those	-0.07010531
+-2.677678	Thus	-0.07010531
+-2.677678	Thus,	-0.07010531
+-2.677678	To	-0.07010531
+-1.73757	a	-0.1864745
+-2.677678	about	-0.0701053
+-2.677678	above,	-0.07010531
+-2.677678	account	-0.07010531
+-2.677678	account,	-0.0701053
+-2.677678	advocate	-0.07010531
+-2.677678	affect	-0.07010531
+-2.677678	affected	-0.07010531
+-2.677678	after	-0.07010531
+-2.262149	all,	-0.1058812
+-2.677678	all,my	-0.07010531
+-2.677678	among	-0.07010531
+-2.003779	an	-2.361728
+-2.106965	and	-0.07010531
+-2.677678	any	-0.07010531
+-2.677678	apart	-0.07010531
+-2.677678	appear	-0.07010531
+-2.242568	as	-0.07010531
+-2.677678	asking	-0.0701053
+-2.677678	avoid	-0.07010531
+-2.262149	bad	-0.1058813
+-2.677678	basis	-0.07010531
+-1.920465	be	-0.07010531
+-2.262149	because	-0.144871
+-2.677678	become	-0.07010531
+-2.677678	been	-0.07010531
+-2.677678	being	-0.07010531
+-2.242568	believe	-0.09848639
+-2.262149	better	-0.144871
+-2.242568	between	-0.1184929
+-2.677678	big	-0.07010531
+-2.106965	borrow	-2.264818
+-1.406011	borrowing	-0.9594762
+-2.677678	broken	-0.07010531
+-2.262149	by	-0.144871
+-2.106965	can	-0.07010531
+-2.677678	cannot	-0.0701053
+-2.677678	casue	-0.07010531
+-2.677678	cause	-0.07010531
+-2.677678	caused	-0.07010531
+-2.677678	choice,	-0.07010531
+-2.677678	closer	-0.07010531
+-2.262149	conclusion,	-0.144871
+-2.677678	conclusion,borrowing	-0.0701053
+-1.790414	damage	-0.3549192
+-2.677678	deal.	-0.07010531
+-2.677678	deep	-0.07010531
+-2.677678	deeper.	-0.07010531
+-2.677678	definitely.	-0.07010531
+-2.677678	destroy	-0.07010531
+-2.677678	deteriorate	-0.07010531
+-2.677678	detrimental	-0.07010531
+-2.677678	developing	-0.07010531
+-2.677678	discord	-0.07010531
+-2.262149	discussed	-0.144871
+-2.106965	do	-0.1288527
+-2.677678	does	-0.07010531
+-2.677678	don't	-0.07010531
+-2.677678	during	-0.0701053
+-2.677678	easily	-0.07010531
+-2.677678	end,	-0.0701053
+-2.677678	enough	-0.07010531
+-2.677678	except	-0.07010531
+-2.677678	factor	-0.07010531
+-2.677678	factors	-0.07010531
+-2.677678	favor	-0.07010531
+-2.677678	feeling.	-0.07010531
+-2.677678	fellowship	-0.07010531
+-2.106965	fellowship.	-2.264818
+-2.677678	financial	-0.07010531
+-2.677678	fine	-0.07010531
+-2.677678	firends	-0.07010531
+-2.242568	for	-0.07010531
+-2.242568	friend	-0.6612095
+-1.920465	friends	-0.2290479
+-2.677678	friends,	-0.07010531
+-2.677678	friends.	-0.07010531
+-2.003779	friendship	-0.0701053
+-2.242568	friendship,	-0.1184929
+-1.481826	friendship.	-2.866878
+-2.242568	from	-0.07010531
+-2.677678	general,	-0.07010531
+-2.262149	good	-0.07010531
+-2.242568	harm	-0.09848641
+-2.677678	harm.	-0.07010531
+-2.003779	harmful	-0.7581196
+-2.262149	has	-0.07010531
+-2.242568	have	-0.1058812
+-2.677678	help	-0.07010531
+-2.677678	hold	-0.07010531
+-2.242568	hurt	-0.09848639
+-2.677678	i	-0.07010531
+-2.677678	impact	-0.07010531
+-2.677678	important	-0.07010531
+-2.106965	in	-0.1058813
+-2.262149	influence	-0.07010531
+-2.677678	injure	-0.07010531
+-2.677678	injured	-0.07010531
+-2.677678	injury	-0.07010531
+-2.677678	insist	-0.07010531
+-2.262149	into	-0.07010531
+-1.790414	is	-0.2285751
+-2.677678	isn't	-0.07010531
+-2.677678	issue.	-0.07010531
+-2.003779	it	-0.07010531
+-2.677678	it's	-0.07010531
+-2.677678	keep	-0.07010531
+-2.262149	lending	-0.144871
+-2.677678	maintaining	-0.07010531
+-2.677678	make	-0.07010531
+-2.677678	makes	-0.07010531
+-2.677678	matter.	-0.07010531
+-2.677678	matters	-0.07010531
+-2.677678	may	-0.07010531
+-2.677678	might	-0.0701053
+-2.677678	mix	-0.07010531
+-1.920465	money	-0.2444664
+-2.242568	money.	-2.139879
+-2.677678	most	-0.07010531
+-2.106965	my	-0.07010531
+-2.677678	never	-0.0701053
+-2.106965	no	-0.07010531
+-1.920465	not	-0.087625
+-2.677678	nutshell,	-0.07010531
+-2.677678	nutshell,it	-0.0701053
+-2.003779	of	-0.0701053
+-2.677678	offering	-0.07010531
+-2.003779	on	-0.1184929
+-2.677678	opinion	-0.0701053
+-2.677678	opinion,	-0.07010531
+-2.677678	or	-0.0701053
+-2.677678	other	-0.07010531
+-1.920465	our	-0.3846267
+-2.677678	people	-0.07010531
+-2.677678	perfectly	-0.07010531
+-2.262149	point	-0.07010531
+-2.677678	prevent	-0.0701053
+-2.677678	problem	-0.07010531
+-2.262149	problems	-0.07010531
+-2.677678	profits	-0.07010531
+-2.677678	pure	-0.07010531
+-2.262149	put	-0.1184929
+-2.262149	real	-0.144871
+-2.677678	repute	-0.07010531
+-2.677678	result,	-0.07010531
+-2.677678	root.	-0.07010531
+-2.677678	ruin	-0.07010531
+-2.677678	sake	-0.07010531
+-2.677678	say	-0.07010531
+-2.677678	short,	-0.07010531
+-2.677678	should	-0.07010531
+-2.677678	shouldn,t	-0.07010531
+-2.262149	so	-0.144871
+-2.677678	some	-0.07010531
+-2.677678	something	-0.07010531
+-2.677678	sometimes	-0.07010531
+-2.677678	spoil	-0.07010531
+-2.677678	statement	-0.07010531
+-2.677678	still	-0.07010531
+-2.677678	sturdy	-0.07010531
+-2.677678	such	-0.07010531
+-2.677678	sum	-0.07010531
+-2.677678	summary,	-0.07010531
+-2.677678	summary,the	-0.07010531
+-2.677678	take	-0.07010531
+-1.73757	that	-1.013392
+-1.455057	the	-0.3161862
+-2.677678	them,if	-0.0701053
+-2.262149	these	-0.07010531
+-2.262149	thing	-0.07010531
+-2.677678	thing.	-0.07010531
+-2.677678	think	-0.0701053
+-2.677678	this	-0.07010531
+-2.677678	though	-0.07010531
+-2.677678	threaten	-0.07010531
+-1.510355	to	-0.2873327
+-2.677678	true	-0.0701053
+-2.677678	truly	-0.07010531
+-2.677678	trust	-0.07010531
+-2.677678	trust!	-0.07010531
+-2.677678	trust,	-0.07010531
+-2.677678	unbalance	-0.07010531
+-2.677678	undermine	-0.07010531
+-2.677678	understanding	-0.07010531
+-2.677678	unnecessary	-0.07010531
+-2.677678	up	-0.07010531
+-2.677678	us	-0.07010531
+-2.677678	us,we	-0.07010531
+-2.677678	view,	-0.07010531
+-2.677678	view,the	-0.07010531
+-2.242568	we	-0.07010531
+-2.677678	we'd	-0.07010531
+-2.677678	well	-0.07010531
+-2.677678	what	-0.07010531
+-2.677678	when	-0.07010531
+-2.677678	which	-0.07010531
+-1.850589	will	-0.3577478
+-2.677678	wisdom	-0.07010531
+-2.242568	with	-0.07010531
+-2.262149	without	-0.07010531
+-2.106965	won't	-0.09362555
+-2.677678	word,	-0.07010531
+-2.677678	worry	-0.07010531
+-2.242568	would	-0.07010531
+-2.242568	your	-0.07010531
+
+\2-grams:
+-0.8214383	,but make
+-0.8214383	,they might
+-2.5762	<s> Above
+-1.053662	<s> All	-0.3023612
+-2.055336	<s> As	-0.2315773
+-2.5762	<s> For
+-2.055336	<s> From	-0.2315773
+-2.5762	<s> Hence,I
+-0.8320912	<s> In	-0.03511218
+-0.6018142	<s> So	-0.3741896
+-1.132704	<s> So,	-0.09601229
+-2.5762	<s> So,in
+-2.5762	<s> So,it
+-2.5762	<s> Taking
+-2.5762	<s> The
+-1.132704	<s> Therefore,	-0.09601229
+-2.5762	<s> Therefore,a
+-2.5762	<s> Those
+-2.5762	<s> Thus
+-1.229405	<s> Thus,	-0.09589592
+-1.353997	<s> To	-0.1367607
+-2.5762	<s> after
+-2.407987	<s> in
+-2.469436	<s> so
+-2.047113	<s> to
+-0.8132655	Above all,
+-1.09052	All in	-0.4035757
+-1.101344	All these
+-0.7834657	As a	-0.2315772
+-0.747363	For the
+-0.8214383	From what
+-0.8214383	Hence,I don't
+-1.885197	I advocate
+-0.6023524	I believe	-0.1557849
+-1.885197	I hold
+-1.885197	I insist
+-1.885197	I keep
+-0.3814724	I think	-0.4775625
+-1.493029	In a	-0.2315772
+-1.673331	In conclusion,
+-1.736351	In conclusion,borrowing
+-1.736351	In general,
+-1.634235	In my
+-1.736351	In short,
+-1.736351	In summary,
+-1.736351	In summary,the
+-1.333428	In the
+-1.360503	So I	-0.3066658
+-1.199117	So borrowing	-0.4035758
+-1.459903	So from
+-1.417377	So it
+-1.500299	So it's
+-1.197385	So, I
+-1.080399	So, borrowing	-0.181727
+-1.263148	So, we
+-0.8076556	So,in my
+-0.7929806	So,it will
+-0.8132655	Taking these
+-0.8214383	The matters
+-1.197385	Therefore, I
+-1.080399	Therefore, borrowing	-0.181727
+-1.099458	Therefore, the
+-0.8132655	Therefore,a good
+-0.8214383	Those problem
+-0.7387875	Thus borrowing
+-1.197385	Thus, I
+-1.249175	Thus, borrow
+-1.080399	Thus, borrowing	-0.2315772
+-1.101344	To put
+-1.117353	To sum
+-1.355759	a bad
+-1.920277	a big
+-1.67378	a damage
+-1.920277	a deep
+-1.842504	a friend
+-1.766991	a harmful
+-0.669383	a nutshell,	-0.12538
+-1.920277	a nutshell,it
+-1.920277	a result,	-0.2315772
+-1.920277	a threaten
+-1.920277	a word,
+-0.7978174	about money
+-0.7387875	above, borrowing	-0.2315772
+-0.8027087	account of
+-0.7881971	account, I
+-0.7834657	advocate that
+-0.7517151	affect friendship.
+-0.8132655	affected by
+-0.8214383	after all,my
+-0.8110179	all, I
+-1.409904	all, asking
+-1.167264	all, borrowing
+-0.8214383	all,my opinion
+-0.8214383	among friends,
+-0.00188837	an injury	-0.4035757
+-1.408329	and developing
+-1.340058	and it
+-1.377576	and lending	-0.2315772
+-1.408329	and trust!
+-0.8214383	any other
+-0.8126596	apart your
+-0.8214383	appear during
+-1.263148	as money.
+-1.288388	as trust
+-1.288388	as well
+-0.7978174	asking money
+-0.8214383	avoid harm.
+-1.409904	bad impact
+-0.8353286	bad influence	-0.2315772
+-1.381405	bad thing
+-0.8027087	basis on
+-1.636711	be affected
+-1.52679	be an
+-1.585886	be better
+-1.636711	be broken
+-1.636711	be closer
+-1.52679	be harmful
+-1.291255	be the
+-0.5364872	because of
+-0.8027087	become an
+-0.8132655	been discussed
+-0.8027087	being an
+-1.443161	believe borrow
+-0.8393679	believe borrowing	-0.181727
+-1.501855	believe offering
+-1.352618	believe that	-0.181727
+-0.5342497	better not
+-0.7028132	between friends	-0.2315772
+-1.289981	between them,if
+-0.8214383	big deal.
+-0.002338233	borrow money	-0.3066657
+-1.554834	borrowing and	-0.2315772
+-0.0668033	borrowing money	-0.5952587
+-2.112018	borrowing would
+-0.8132655	broken because
+-0.506165	by borrowing	-0.2315772
+-1.500299	can affect
+-1.43812	can do
+-1.39758	can not
+-1.500299	can ruin
+-1.500299	can say
+-0.7881971	cannot damage
+-0.8076556	casue no
+-0.7834657	cause a
+-0.8132655	caused by
+-0.743054	choice, </s>
+-0.8027087	closer on
+-0.506165	conclusion, borrowing	-0.2315772
+-0.7978174	conclusion,borrowing money
+-1.769448	damage fellowship.
+-1.746422	damage friendship
+-1.17957	damage friendship.	-0.1817272
+-1.746422	damage on
+-0.3297002	damage the	-0.3197443
+-1.565609	damage to
+-0.743054	deal. </s>
+-0.8214383	deep root.
+-0.743054	deeper. </s>
+-0.743054	definitely. </s>
+-0.747363	destroy the
+-0.747363	deteriorate the
+-0.8126596	detrimental for
+-0.747363	developing the
+-0.743054	discord </s>
+-0.5449288	discussed above,	-0.2315772
+-0.9291888	do harm	-0.2315772
+-0.9234774	do no	-0.2315772
+-1.467685	do with
+-1.09052	does no
+-1.117353	does undermine
+-0.8214383	don't favor
+-0.7978174	during our
+-0.8126596	easily hurt
+-0.7881971	end, I
+-0.7561112	enough to
+-0.8132655	except without
+-0.7561112	factor to
+-0.8132655	factors into
+-0.747363	favor the
+-0.743054	feeling. </s>
+-0.8214383	fellowship ,but
+-0.002278538	fellowship. </s>
+-0.8214383	financial issue.
+-0.8132655	fine without
+-0.7929806	firends will	-0.2315772
+-1.288388	for people
+-1.099458	for the
+-1.288388	for us
+-1.409242	friend can
+-0.1260403	friend is	-0.1163561
+-1.816423	friends can
+-1.924916	friends cannot
+-1.924916	friends does
+-1.924916	friends except
+-1.694444	friends is
+-1.857774	friends lending
+-1.924916	friends sometimes
+-0.5338948	friends will	-0.3419146
+-1.3455	friends won't	-0.2822519
+-1.85314	friends would
+-0.8214383	friends, we'd
+-0.743054	friends. </s>
+-1.814202	friendship among
+-1.739814	friendship because
+-1.734724	friendship between
+-1.328252	friendship borrowing
+-1.814202	friendship definitely.
+-1.734724	friendship from
+-1.563217	friendship is
+-1.814202	friendship when
+-1.814202	friendship which
+-1.734724	friendship with
+-1.694577	friendship won't
+-1.108008	friendship, </s>
+-0.7138615	friendship, so	-0.2315773
+-0.0005685147	friendship. </s>
+-1.516012	from a	-0.2315772
+-1.777434	from financial
+-1.777434	from firends	-0.2315773
+-1.703893	from friend
+-1.599871	from friends	-0.352881
+-1.777434	from friends.	-0.2315772
+-1.666382	from my
+-1.599871	from our
+-1.777434	from us,we
+-1.703893	from your	-0.1383293
+-0.7387875	general, borrowing
+-1.117353	good repute
+-0.9965007	good to
+-1.251057	harm friendship.	-0.2315774
+-1.501855	harm or
+-1.404651	harm our
+-0.8598999	harm to	-0.09984017
+-0.743054	harm. </s>
+-1.520277	harmful thing.
+-0.09634504	harmful to	-0.09888774
+-1.045249	has a
+-1.117353	has been
+-0.8064249	have a	-0.2315772
+-1.381405	have bad
+-1.409904	have something
+-0.8076556	help won't
+-0.7834657	hold that
+-1.423479	hurt friendship
+-1.251057	hurt friendship.
+-1.404651	hurt our
+-0.8495126	hurt the	-0.2173699
+-0.8126596	i believe
+-0.8027087	impact on
+-0.8132655	important thing
+-0.8064249	in a
+-1.381405	in all,	-0.1674105
+-1.381405	in conclusion,
+-0.9888827	influence friendship.
+-1.08108	influence on
+-1.09052	injure fellowship.
+-0.9888827	injure friendship.
+-0.7517151	injured friendship.
+-0.7561112	injury to	-0.1574413
+-0.7834657	insist that
+-1.045249	into a
+-1.117353	into account,
+-1.761367	is an
+-1.895932	is basis
+-1.895932	is easily
+-1.761367	is harmful
+-0.5042959	is not	-0.1778795
+-1.895932	is perfectly
+-1.895932	is sturdy
+-1.652133	is that
+-1.492336	is the
+-1.895932	is truly
+-0.8027087	isn't harmful
+-0.743054	issue. </s>
+-1.500299	it deeper.
+-1.43812	it in	-0.2315772
+-1.360503	it is
+-1.43812	it won't
+-1.459903	it would
+-1.08108	it's of
+-1.117353	it's unnecessary
+-0.8076556	keep my
+-0.5342497	lending money
+-0.8076556	maintaining and
+-0.8027087	make it
+-0.8076556	makes no
+-0.743054	matter. </s>
+-0.7929806	matters will
+-0.8214383	may appear
+-0.7978174	might be
+-0.747363	mix the
+-1.900496	money as
+-1.900496	money between
+-1.8611	money can
+-1.731772	money damage
+-0.5025183	money from	-0.5570467
+-1.731772	money is
+-1.978269	money isn't
+-1.978269	money makes
+-1.570195	money to
+-1.361613	money will	-0.2039172
+-1.900496	money with
+-0.003040715	money. </s>
+-0.8214383	most important
+-1.408329	my opinion,
+-1.377576	my point
+-1.408329	my statement
+-1.408329	my view,the
+-0.7978174	never be
+-1.291966	no damage
+-1.408329	no discord
+-1.377576	no good
+-1.375359	no harm	-0.2315772
+-1.957287	not ,they
+-1.401287	not </s>
+-1.614887	not a
+-1.758981	not an
+-1.718235	not be
+-1.957287	not become
+-1.64668	not damage	-0.1441865
+-1.957287	not destroy
+-1.957287	not detrimental
+-1.396523	not harm	-0.09748656
+-1.396523	not hurt	-0.1241917
+-1.860564	not influence
+-1.957287	not spoil
+-1.461517	not to
+-0.9667988	nutshell, borrowing	0.04185933
+-1.08108	nutshell, it
+-0.7881971	nutshell,it is
+-1.574595	of maintaining
+-1.262113	of the
+-1.574595	of this
+-1.574595	of understanding
+-1.574595	of view,
+-1.574595	of wisdom
+-0.8214383	offering help
+-1.577679	on account
+-1.534629	on friendship,
+-0.9220932	on friendship.	-0.2315774
+-0.916339	on the
+-0.7881971	opinion is
+-0.7387875	opinion, borrowing
+-0.7881971	or damage
+-0.8214383	other choice,
+-1.065529	our friends
+-1.069918	our friendship
+-0.3574701	our friendship.	-0.1817272
+-0.7561112	people to
+-0.8214383	perfectly fine
+-1.08108	point of
+-1.045249	point that
+-0.7978174	prevent our
+-0.7929806	problem will
+-1.117353	problems may
+-1.062795	problems will
+-0.8214383	profits such
+-0.7517151	pure friendship.
+-1.268798	put into
+-0.7063234	put it	-0.2315772
+-0.5364872	real friendship
+-0.7387875	repute borrowing
+-0.7387875	result, borrowing	-0.2315772
+-0.743054	root. </s>
+-0.7517151	ruin friendship.
+-0.8027087	sake of
+-0.7834657	say that
+-0.8214383	short, i
+-0.8214383	should still
+-0.8076556	shouldn,t borrow
+-0.5298089	so I	-0.1276491
+-0.8132655	some problems
+-0.7561112	something to
+-0.8126596	sometimes have
+-0.7517151	spoil friendship.
+-0.7834657	statement that
+-0.8126596	still believe
+-0.8214383	sturdy enough
+-0.8126596	such as
+-0.8214383	sum up
+-0.747363	summary, the
+-0.8132655	summary,the real
+-0.8214383	take apart
+-0.05047312	that borrowing	-0.7046058
+-1.766551	that we
+-2.125202	the end,
+-2.125202	the factor
+-2.125202	the feeling.
+-2.125202	the fellowship
+-1.989037	the fellowship.	-0.2315772
+-0.6551505	the friendship
+-2.034169	the friendship,
+-0.6338242	the friendship.	-0.9598782
+-2.034169	the money.
+-2.039929	the point
+-2.125202	the pure
+-2.039929	the real
+-2.125202	the sake
+-2.125202	the trust,
+-2.125202	the unbalance
+-0.7978174	them,if not
+-1.117353	these factors
+-1.101344	these problems
+-1.100169	thing for
+-1.053934	thing is
+-0.743054	thing. </s>
+-0.9667988	think borrowing	-0.6076958
+-1.045249	think that
+-0.8214383	this matter.
+-0.8214383	though some
+-0.7561112	threaten to
+-2.08712	to avoid
+-1.95342	to borrow
+-1.95342	to do
+-1.507975	to fellowship.	-0.1817269
+-1.997818	to friendship,
+-0.7990475	to friendship.	-0.3066659
+-2.08712	to mix
+-1.876286	to our
+-2.08712	to prevent
+-2.003478	to put
+-2.08712	to take
+-0.5931922	to the	-0.2965512
+-2.08712	to worry
+-1.997818	to your
+-0.7978174	true friends
+-0.8027087	truly harmful
+-0.8126596	trust between
+-0.743054	trust! </s>
+-0.8076556	trust, and
+-0.8214383	unbalance caused
+-0.7517151	undermine friendship.
+-0.8076556	understanding and
+-0.7561112	unnecessary to
+-0.8076556	up in
+-0.7561112	us to
+-0.8214383	us,we should
+-0.7387875	view, borrowing
+-0.8214383	view,the most
+-1.249175	we can
+-1.26486	we discussed
+-1.288388	we shouldn,t
+-0.8132655	we'd better
+-0.8126596	well as
+-1.101344	what has
+-1.100169	what we
+-0.8126596	when have
+-0.8132655	which has
+-1.817939	will be
+-1.964188	will casue
+-1.964188	will cause
+-1.768342	will damage
+-1.964188	will deteriorate
+-1.873939	will do
+-1.39438	will have
+-0.6966726	will hurt	-0.133837
+-0.5678535	will not	-0.2060366
+-0.8126596	wisdom for
+-1.222508	with friends
+-1.263148	with money.
+-1.288388	with profits
+-1.117353	without any
+-1.117353	without being
+-1.46186	won't be
+-0.9681534	won't damage	-0.2801673
+-1.506602	won't do
+-1.576134	won't injure
+-1.576134	won't injured
+-0.8214383	word, though
+-0.8214383	worry about
+-1.222508	would be
+-1.288388	would never
+-1.222508	would not
+-1.375359	your friend	-0.2315772
+-1.323429	your friends
+-1.184915	your friendship.
+-1.408329	your true
+
+\3-grams:
+-0.2660016	<s> All in
+-0.2925265	<s> As a
+-0.2994699	<s> From what
+-0.5994127	So I believe
+-0.2341272	So I think
+-0.3556854	so I believe
+-0.969378	<s> In a
+-0.4297374	<s> So I
+-0.6923408	<s> So borrowing
+-1.213515	<s> So it's
+-0.5768161	<s> So, borrowing
+-0.5768161	<s> Therefore, borrowing
+-0.5771391	<s> Thus, borrowing
+-0.4842108	<s> To put
+-0.376399	As a result,
+-0.2684874	In a nutshell,
+-0.374973	from a friend
+-0.3573841	have a bad
+-0.283702	discussed above, borrowing
+-0.5801451	in all, I
+-0.6813104	in all, borrowing
+-0.358639	borrowing and lending
+-0.6320951	I believe borrowing
+-0.6983925	I believe that
+-0.02516341	So borrowing money
+-0.04278735	So, borrowing money
+-0.04278735	Therefore, borrowing money
+-0.03793833	Thus, borrowing money
+-0.03793833	above, borrowing money
+-0.04278735	believe borrowing money
+-0.03793833	by borrowing money
+-0.03793833	conclusion, borrowing money
+-0.07417238	nutshell, borrowing money
+-0.03793833	result, borrowing money
+-0.01239948	that borrowing money
+-0.01555547	think borrowing money
+-0.2087733	not damage the
+-0.7633159	won't damage friendship.
+-0.2341998	won't damage the
+-0.001335389	the fellowship. </s>
+-0.001498095	to fellowship. </s>
+-0.2943131	from firends will
+-0.06945436	your friend is
+-0.2329219	between friends will
+-1.437456	from friends does
+-1.323362	from friends is
+-0.3715571	from friends will
+-0.6751902	from friends won't
+-0.2845764	from friends. </s>
+-0.0003740395	damage friendship. </s>
+-0.0003334625	harm friendship. </s>
+-0.0003334625	on friendship. </s>
+-0.0003740395	our friendship. </s>
+-6.231755e-05	the friendship. </s>
+-0.0002804994	to friendship. </s>
+-1.527295	money from a
+-1.5833	money from firends
+-0.1946304	money from friends
+-1.5833	money from friends.
+-1.492836	money from your
+-0.3060111	do harm to
+-0.3060111	no harm to
+-0.6092773	not harm friendship.
+-0.4498321	not hurt the
+-0.432834	will hurt the
+-0.2065143	All in all,
+-0.2967838	it in a
+-0.3353861	bad influence on
+-0.1710888	an injury to
+-0.3237141	friend is not
+-0.3618248	put it in
+-0.233026	and lending money
+-0.1793918	borrow money from
+-1.707658	borrowing money can
+-0.1866409	borrowing money from
+-1.608119	borrowing money is
+-0.8232735	borrowing money will
+-0.3585141	do no harm
+-0.4532256	is not a
+-1.244763	will not be
+-0.6259501	will not damage
+-1.096635	will not harm
+-1.096635	will not hurt
+-0.4793358	a nutshell, borrowing
+-0.283702	a result, borrowing
+-0.2317192	friendship, so I
+-0.03254714	believe that borrowing
+-1.099127	damage the fellowship.
+-0.2536067	damage the friendship.
+-0.2719335	hurt the friendship.
+-0.213103	to the friendship.
+-0.1530755	I think borrowing
+-0.6656579	harm to our
+-0.6413802	harmful to fellowship.
+-0.5756621	injury to friendship.
+-0.4860896	injury to the
+-0.2426129	firends will not
+-1.191294	friends will do
+-0.2148659	friends will not
+-0.2645277	money will not
+-0.3650337	friends won't damage
+-0.9338305	friends won't injure
+-0.5179651	from your friend
+
+\end\

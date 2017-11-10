@@ -6,19 +6,19 @@ readBook = openpyxl.load_workbook(configs['extractFeaturesPath'])
 # 获取当前正在显示的sheet
 readSheet = readBook.active
 
-BGFile = open('/Users/ming.zhou/NLP/datasets/BGFile.txt', 'a')
-PTFile = open('/Users/ming.zhou/NLP/datasets/PTFile.txt', 'a')
-TSTFile = open('/Users/ming.zhou/NLP/datasets/TSTFile.txt', 'a')
-RSFile = open('/Users/ming.zhou/NLP/datasets/RSFile.txt', 'a')
-REXPFile = open('/Users/ming.zhou/NLP/datasets/REXPFile.txt', 'a')
-EGFile = open('/Users/ming.zhou/NLP/datasets/EGFile.txt', 'a')
-EEXPFile = open('/Users/ming.zhou/NLP/datasets/EEXPFile.txt', 'a')
-GRLFile = open('/Users/ming.zhou/NLP/datasets/GRLFile.txt', 'a')
-ADMFile = open('/Users/ming.zhou/NLP/datasets/ADMFile.txt', 'a')
-RTTFile = open('/Users/ming.zhou/NLP/datasets/RTTile.txt', 'a')
-SRSFile = open('/Users/ming.zhou/NLP/datasets/SRSFile.txt', 'a')
-RAFMFile = open('/Users/ming.zhou/NLP/datasets/RAFMFile.txt', 'a')
-IRLFile = open('/Users/ming.zhou/NLP/datasets/IRLFile.txt', 'a')
+BGFile = open('/Users/ming.zhou/NLP/datasets/ngram/BGFile.txt', 'a')
+PTFile = open('/Users/ming.zhou/NLP/datasets/ngram/PTFile.txt', 'a')
+TSTFile = open('/Users/ming.zhou/NLP/datasets/ngram/TSTFile.txt', 'a')
+RSFile = open('/Users/ming.zhou/NLP/datasets/ngram/RSFile.txt', 'a')
+REXPFile = open('/Users/ming.zhou/NLP/datasets/ngram/REXPFile.txt', 'a')
+EGFile = open('/Users/ming.zhou/NLP/datasets/ngram/EGFile.txt', 'a')
+EEXPFile = open('/Users/ming.zhou/NLP/datasets/ngram/EEXPFile.txt', 'a')
+GRLFile = open('/Users/ming.zhou/NLP/datasets/ngram/GRLFile.txt', 'a')
+ADMFile = open('/Users/ming.zhou/NLP/datasets/ngram/ADMFile.txt', 'a')
+RTTFile = open('/Users/ming.zhou/NLP/datasets/ngram/RTTFile.txt', 'a')
+SRSFile = open('/Users/ming.zhou/NLP/datasets/ngram/SRSFile.txt', 'a')
+RAFMFile = open('/Users/ming.zhou/NLP/datasets/ngram/RAFMFile.txt', 'a')
+IRLFile = open('/Users/ming.zhou/NLP/datasets/ngram/IRLFile.txt', 'a')
 
 BGContent = []
 PTContent = []
