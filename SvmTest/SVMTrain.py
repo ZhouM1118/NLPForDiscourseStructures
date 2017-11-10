@@ -20,20 +20,22 @@ def getFeatureVector():
     for i in range(readSheet.max_row - 1):
 
         featureVector = []
-        sentenceTag.append(readSheet.cell(row = i + 2, column = 5).value)
+        sentenceTag.append(readSheet['E' + str(i + 2)].value)
         # 先添加段落特征
-        featureVector.append(float(readSheet.cell(row = i + 2, column = 1).value.strip().split('-')[1]))
+        featureVector.append(float(readSheet['A' + str(i + 2)].value.strip().split('-')[1]))
         for j in range(readSheet.max_column - 5):
             if isinstance(readSheet.cell(row = i + 2, column = j + 6).value, str):
                 featureVector.append(float(readSheet.cell(row=i + 2, column=j + 6).value))
             else:
                 featureVector.append(readSheet.cell(row = i + 2, column = j + 6).value)
-
-        featureVectorList.append(normalizeFeatureBySigmoid(featureVector))
+        featureVectorList.append(featureVector)
     return featureVectorList, sentenceTag
 
 # 归一化处理，使用sigmoid函数
 # 2017.11.10 准确率 0.205202312139
+# sigmoid函数做归一主要是把两边的一些噪声数据拉回来，不要让噪声数据影响模型效果，
+# 而我们是自己提取的特征，已经经过了预处理，没有很多噪声数据
+# 这就是在这种情况下使用sigmoid函数准确率低的原因
 # ('6-5', 195), ('1-5', 108), ('4-5', 95), ('10-5', 74), ('12-5', 68), ('7-5', 66),
 # ('13-5', 60), ('9-5', 51), ('2-5', 45), ('11-5', 44), ('3-5', 17), ('8-5', 2)
 def normalizeFeatureBySigmoid(featureVector):
@@ -43,7 +45,7 @@ def normalizeFeatureBySigmoid(featureVector):
     return normalizeFeatureVector
 
 # 归一化处理，使用(0,1)标准化
-# 2017.11.10 准确率 0.401734104046
+# 2017.11.10 准确率 0.401734104046->0.413294797688
 # ('1-5', 90), ('4-5', 88), ('10-5', 67), ('12-5', 65), ('7-5', 52), ('9-5', 49),
 #  ('11-5', 41), ('2-5', 40), ('13-6', 34), ('13-5', 25), ('7-6', 11), ('3-5', 10),
 #  ('4-6', 6), ('10-6', 6), ('1-6', 6), ('3-6', 5), ('5-6', 3), ('12-6', 3), ('7-1', 3),

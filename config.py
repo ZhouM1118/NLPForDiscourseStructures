@@ -46,5 +46,11 @@ configs = {
         '.' : 1,
         '?' : 2,
         '!' : 3
+    },
+    'paraType' : {
+        'Introduction' : 50,
+        'Reason' : 100,
+        'Concession' : 150,
+        'Conclusion' : 200
     }
 }
