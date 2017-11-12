@@ -5,6 +5,9 @@ configs = config.configs
 writeBook = openpyxl.load_workbook(configs['extractFeaturesPath'])
 writeSheet = writeBook.active
 
+writeTestBook = openpyxl.load_workbook(configs['extractTestFeaturesPath'])
+writeTestSheet = writeTestBook.active
+
 import re
 def integrateNGramFeature():
 
@@ -16,17 +19,26 @@ def integrateNGramFeature():
     # ADMResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/ADMResult')
     # RTTResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/RTTResult')
     # SRSResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/SRSResult')
-    RAFMResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/RAFMResult')
+    # RAFMResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/RAFMResult')
+    # TestBGResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/TestBGResult')
+    # TestPTResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/TestPTResult')
+    # TestREXPResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/TestREXPResult')
+    # TestEGResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/TestEGResult')
+    # TestEEXPResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/TestEEXPResult')
+    # TestADMResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/TestADMResult')
+    # TestRTTResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/TestRTTResult')
+    # TestSRSResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/TestSRSResult')
+    TestRAFMResultFile = open('/Users/ming.zhou/NLP/datasets/ngram/modal/TestRAFMResult')
 
     i = 2
-    for line in RAFMResultFile:
+    for line in TestRAFMResultFile:
         result = re.findall('ppl=.*? ppl', line)
         if result:
-            writeSheet['V' + str(i)] = re.split('=', result[0])[1].strip().split(' ')[0]
+            writeTestSheet['V' + str(i)] = re.split('=', result[0])[1].strip().split(' ')[0]
             i += 1
             # if 'zeroprobs' in line and 'logprob=' in line and 'ppl=' in line and 'ppl1=' in line:
             #     print(line)
-    writeBook.save(configs['extractFeaturesPath'])
+    writeTestBook.save(configs['extractTestFeaturesPath'])
 
 def integrateSentenceTagFeature():
     nowEssayId = 0
@@ -56,4 +68,15 @@ def integrateParaTagFeature():
         writeSheet['F' + str(i + 2)] = configs['paraType'][paraType]
     writeBook.save(configs['extractFeaturesPath'])
 
-integrateParaTagFeature()
+def integratePunctuationFeature():
+    for i in range(writeTestSheet.max_row - 1):
+        punctuation = writeTestSheet['J' + str(i + 2)].value
+        tag = 0
+        if punctuation in configs['punctuation']:
+            tag = configs['punctuation'][punctuation]
+        writeTestSheet['J' + str(i + 2)] = tag
+        print('index[', i + 2, ']', punctuation, ',tag=', tag)
+
+    writeTestBook.save(configs['extractTestFeaturesPath'])
+
+integrateNGramFeature()

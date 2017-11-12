@@ -23,6 +23,9 @@ readSheet = readBook.active
 writeBook = openpyxl.load_workbook(configs['extractFeaturesPath'])
 writeSheet = writeBook.active
 
+writeTestBook = openpyxl.load_workbook(configs['extractTestFeaturesPath'])
+writeTestSheet = writeTestBook.active
+
 # 分割不带标签的句子 注：无法识别标点符号后不带空格的句子，故放弃这种方式
 # def segregateSentence(paraContent):
 #     # sent_tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
@@ -79,43 +82,86 @@ def getSentenceTense(sentence):
             i_2 += 1
     return 1 if i_1 >= i_2 else 2
 
-rows = []
+def extractTrainStructuralFeature():
 
-for i in range(readSheet.max_row - 51):
-    paraContentTag = readSheet.cell(row = i + 2, column = 8).value
-    sentencesAndTag = segregateSentenceByTag(paraContentTag)
+    rows = []
 
-    sentences = sentencesAndTag[0]
-    tags = sentencesAndTag[1]
+    for i in range(readSheet.max_row - 51):
+        paraContentTag = readSheet.cell(row=i + 2, column=8).value
+        sentencesAndTag = segregateSentenceByTag(paraContentTag)
 
-    for index in range(len(sentences)):
-        print((i + 2),sentences[index])
-        wordCountAndPunctuation = getWordCountAndPunctuation(sentences[index])
+        sentences = sentencesAndTag[0]
+        tags = sentencesAndTag[1]
 
-        row = [readSheet.cell(row = i + 2, column = 1).value,#ID
-               readSheet.cell(row = i + 2, column = 2).value,#ParaType
-               readSheet.cell(row = i + 2, column = 5).value,#Structure
-               sentences[index],#SentenceContent
-               tags[index],#SentenceTag
-               wordCountAndPunctuation[0],#WordCount
-               wordCountAndPunctuation[1],#Punctuation
-               index,#position
-               getParseTreeDepth(sentences[index]),#parseTreeDepth
-               getSentenceTense(sentences[index]),#tense
-               '0%'
-               ]
+        for index in range(len(sentences)):
+            print((i + 2), sentences[index])
+            wordCountAndPunctuation = getWordCountAndPunctuation(sentences[index])
 
-        for indicator in configs['indicators']:
-            row.append(1) if indicator in sentences[index] \
-                             or indicator.capitalize() in sentences[index] else row.append(0)
+            row = [readSheet.cell(row=i + 2, column=1).value,  # ID
+                   readSheet.cell(row=i + 2, column=2).value,  # ParaType
+                   readSheet.cell(row=i + 2, column=5).value,  # Structure
+                   sentences[index],  # SentenceContent
+                   tags[index],  # SentenceTag
+                   wordCountAndPunctuation[0],  # WordCount
+                   wordCountAndPunctuation[1],  # Punctuation
+                   index,  # position
+                   getParseTreeDepth(sentences[index]),  # parseTreeDepth
+                   getSentenceTense(sentences[index]),  # tense
+                   '0%'
+                   ]
 
-        rows.append(row)
+            for indicator in configs['indicators']:
+                row.append(1) if indicator in sentences[index] \
+                                 or indicator.capitalize() in sentences[index] else row.append(0)
 
+            rows.append(row)
 
-for row in rows:
-    writeSheet.append(row)
+    for row in rows:
+        writeSheet.append(row)
 
-writeBook.save(configs['extractFeaturesPath'])
+    writeBook.save(configs['extractFeaturesPath'])
+
+def extractTestStructuralFeature():
+
+    rows = []
+
+    for i in range(51):
+        k = i + readSheet.max_row - 50
+        paraContentTag = readSheet['H' + str(k)].value
+        sentencesAndTag = segregateSentenceByTag(paraContentTag.strip())
+
+        sentences = sentencesAndTag[0]
+        tags = sentencesAndTag[1]
+
+        for index in range(len(sentences)):
+            print((k), sentences[index])
+            wordCountAndPunctuation = getWordCountAndPunctuation(sentences[index])
+
+            row = [readSheet['A' + str(k)].value,  # ID
+                   readSheet['B' + str(k)].value,  # ParaType
+                   readSheet['E' + str(k)].value,  # Structure
+                   sentences[index],  # SentenceContent
+                   tags[index],  # SentenceTag
+                   configs['paraType'][readSheet['B' + str(k)].value], # ParaTag
+                   0, 0, #BeforeSentenceTag,AfterSentenceTag
+                   wordCountAndPunctuation[0],  # WordCount
+                   wordCountAndPunctuation[1],  # Punctuation
+                   index,  # position
+                   getParseTreeDepth(sentences[index]),  # parseTreeDepth
+                   getSentenceTense(sentences[index]),  # tense
+                   0,0,0,0,0,0,0,0,0
+                   ]
+
+            for indicator in configs['indicators']:
+                row.append(1) if indicator in sentences[index] \
+                                 or indicator.capitalize() in sentences[index] else row.append(0)
+
+            rows.append(row)
+
+    for row in rows:
+        writeTestSheet.append(row)
+
+    writeTestBook.save(configs['extractTestFeaturesPath'])
 
 # 测试代码
 # paraContentTag = readSheet.cell(row = 68, column = 8).value
@@ -148,5 +194,7 @@ writeBook.save(configs['extractFeaturesPath'])
 #     print(tags[index])
 
 # 计算程序运行总时间(秒)
+extractTestStructuralFeature()
+
 elapsed = (datetime.now() - start).seconds
 print('Time used : ', elapsed)

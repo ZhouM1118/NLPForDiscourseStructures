@@ -11,8 +11,12 @@ configs = config.configs
 # 记录程序开始执行时间
 start = datetime.now()
 
+# readBook = openpyxl.load_workbook(configs['extractFeaturesPath'])
 readBook = openpyxl.load_workbook(configs['extractFeaturesPath'])
 readSheet = readBook.active
+
+readTestBook = openpyxl.load_workbook(configs['extractTestFeaturesPath'])
+readTestSheet = readTestBook.active
 
 def getFeatureVector():
     featureVectorList = []
@@ -28,7 +32,28 @@ def getFeatureVector():
                 featureVector.append(float(readSheet.cell(row=i + 2, column=j + 6).value))
             else:
                 featureVector.append(readSheet.cell(row = i + 2, column = j + 6).value)
-        featureVectorList.append(featureVector)
+        featureVectorList.append(normalizeFeatureByMaxMin(featureVector))
+    return featureVectorList, sentenceTag
+
+# (0,1)标准化 0.389671361502
+# ('4-5', 21), ('1-5', 15), ('12-5', 15), ('10-5', 12), ('11-5', 11), ('9-5', 9),
+# ('5-6', 7), ('6-5', 7), ('7-5', 5), ('2-5', 5), ('6-1', 5), ('5-1', 4), ('2-6', 3),
+# ('7-6', 2)
+def getTestFeatureVector():
+    featureVectorList = []
+    sentenceTag = []
+    for i in range(readTestSheet.max_row - 1):
+
+        featureVector = []
+        sentenceTag.append(readTestSheet['E' + str(i + 2)].value)
+        # 先添加段落特征
+        featureVector.append(float(readTestSheet['A' + str(i + 2)].value.strip().split('-')[1]))
+        for j in range(readTestSheet.max_column - 5):
+            if isinstance(readTestSheet.cell(row = i + 2, column = j + 6).value, str):
+                featureVector.append(float(readTestSheet.cell(row=i + 2, column=j + 6).value))
+            else:
+                featureVector.append(readTestSheet.cell(row = i + 2, column = j + 6).value)
+        featureVectorList.append(normalizeFeatureByMaxMin(featureVector))
     return featureVectorList, sentenceTag
 
 # 归一化处理，使用sigmoid函数
@@ -85,8 +110,34 @@ def doTrain(X, Y):
 
     print(sorted(compare.items(), key=lambda d: -d[1]))
 
+# 测试测试集集的准确度
+def doTrainByTestSet(train_X, train_Y, test_X, test_Y):
+    clf = svm.SVC()
+    clf.fit(train_X, train_Y)
+
+    Y_pred = clf.predict(test_X)
+    print(accuracy_score(test_Y, Y_pred))
+    print(test_Y)
+    print(Y_pred)
+    print('test_Y len is ', len(test_Y),'Y_pred len is ', len(Y_pred))
+
+    compare = {}
+    j = 0
+    for i in range(len(test_Y)):
+        YAndYpred = str(test_Y[i]) + '-' + str(Y_pred[i])
+        # print(YAndYpred)
+        if(test_Y[i] != Y_pred[i]):
+            if YAndYpred not in compare:
+                compare[YAndYpred] = 1
+            else:
+                compare[YAndYpred] = compare[YAndYpred] + 1
+
+    print(sorted(compare.items(), key=lambda d: -d[1]))
+
 params = getFeatureVector()
-doTrain(params[0], params[1])
+testParams = getTestFeatureVector()
+# doTrain(params[0], params[1])
+doTrainByTestSet(params[0], params[1], testParams[0], testParams[1])
 
 # 计算程序运行总时间(秒)
 elapsed = (datetime.now() - start).seconds
