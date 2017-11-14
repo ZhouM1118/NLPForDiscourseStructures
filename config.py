@@ -1,6 +1,6 @@
 configs = {
-    'extractFeaturesPath' : '/Users/ming.zhou/NLP/datasets/Features.xlsx',
-    'extractTestFeaturesPath' : '/Users/ming.zhou/NLP/datasets/TestFeatures.xlsx',
+    'featuresPath' : '/Users/ming.zhou/NLP/datasets/Features.xlsx',
+    'testFeaturesPath' : '/Users/ming.zhou/NLP/datasets/TestFeatures.xlsx',
     'dataSetPath' : '/Users/ming.zhou/NLP/datasets/AW_MLParaData.xlsx',
     'Tags' : {
         '<BG>' : 1,

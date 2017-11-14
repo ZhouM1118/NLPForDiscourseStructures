@@ -1,6 +1,7 @@
 import openpyxl
 import config
 import math
+from sklearn import svm
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.tree import DecisionTreeClassifier
@@ -57,23 +58,17 @@ def getTestFeatureVectorAndTag():
         featureVectorList.append(featureVector)
     return featureVectorList, sentenceTag
 
-def normalizeFeatureBySigmoid(featureVector):
-    normalizeFeatureVector = []
-    for feature in featureVector:
-        normalizeFeatureVector.append(1.0 / (1 + math.exp(-float(feature))))
-    return normalizeFeatureVector
-
-def normalizeFeatureByMaxMin(featureVector):
-    normalizeFeatureVector = []
-    maxNum = max(featureVector)
-    minNum = min(featureVector)
-    for feature in featureVector:
-        normalizeFeatureVector.append((feature - minNum) / (maxNum - minNum))
-    return normalizeFeatureVector
-
 # 训练并测试训练集的准确度
-def doTrain(X, Y):
+def doTrain(X, Y, flag='RandomForest'):
+
     clf = RandomForestClassifier(n_estimators=10) # 0.99710982659
+    if flag == 'ExtraTrees':
+        clf = ExtraTreesClassifier(n_estimators=10)
+    elif flag == 'DecisionTree':
+        clf = DecisionTreeClassifier()
+    elif flag == 'SVM':
+        clf = svm.SVC()
+
     clf.fit(X, Y)
     # clf = clf.fit(X, Y)
 
@@ -110,6 +105,8 @@ def doTrainByTestSet(train_X, train_Y, test_X, test_Y, flag='RandomForest'):
         clf = ExtraTreesClassifier(n_estimators=10)
     elif flag == 'DecisionTree':
         clf = DecisionTreeClassifier()
+    elif flag == 'SVM':
+        clf = svm.SVC()
 
     clf.fit(train_X, train_Y)
     Y_pred = clf.predict(test_X)
