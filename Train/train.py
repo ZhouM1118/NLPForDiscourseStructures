@@ -16,10 +16,13 @@ configs = config.configs
 start = datetime.now()
 
 # readBook = openpyxl.load_workbook(configs['extractFeaturesPath'])
-readBook = openpyxl.load_workbook(configs['extractFeaturesPath'])
+readBook = openpyxl.load_workbook(configs['condensedFeaturesPath'])
+# readBook = openpyxl.load_workbook(configs['condensedTestFeaturesPath'])
+# readBook = openpyxl.load_workbook(configs['featuresPath'])
 readSheet = readBook.active
 
-readTestBook = openpyxl.load_workbook(configs['extractTestFeaturesPath'])
+# readTestBook = openpyxl.load_workbook(configs['testFeaturesPath'])
+readTestBook = openpyxl.load_workbook(configs['condensedTestFeaturesPath'])
 readTestSheet = readTestBook.active
 
 # 获取训练集的句子特征向量以及句子标签
@@ -99,7 +102,7 @@ def doTrain(X, Y, flag='RandomForest'):
 def doTrainByTestSet(train_X, train_Y, test_X, test_Y, flag='RandomForest'):
 
     clf = RandomForestClassifier(n_estimators=10)
-    filePath = '/Users/ming.zhou/NLP/DiscourseStructures/result/' + flag + 'Result.text'
+    filePath = '/Users/ming.zhou/NLP/DiscourseStructures/result/' + flag + 'Result20171114.text'
 
     if flag == 'ExtraTrees':
         clf = ExtraTreesClassifier(n_estimators=10)
@@ -148,6 +151,18 @@ params = getFeatureVectorAndTag()
 testParams = getTestFeatureVectorAndTag()
 # doTrain(params[0], params[1])
 doTrainByTestSet(params[0], params[1], testParams[0], testParams[1], 'ExtraTrees')
+
+# indicators = {}
+# for j in range(readSheet.max_column - 22):
+#     indicator = readSheet.cell(row=1, column=j + 23).value
+#     sumNum = 0
+#     for i in range(readSheet.max_row - 1):
+#         sumNum += readSheet.cell(row=i + 2, column=j + 23).value
+#     indicators[indicator] = sumNum
+# sortedResult = sorted(indicators.items(), key=lambda d: -d[1], reverse=True)
+# print(len(indicators))
+# print(sortedResult)
+
 
 # 计算程序运行总时间(秒)
 elapsed = (datetime.now() - start).seconds

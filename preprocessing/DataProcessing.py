@@ -14,7 +14,9 @@ nltk.data.path.append(configs['nltkDataPath'])
 
 dataSetPath = configs['dataSetPath']
 featuresPath = configs['featuresPath']
+condensedFeaturesPath = configs['condensedFeaturesPath']
 testFeaturesPath = configs['testFeaturesPath']
+condensedTestFeaturesPath = configs['condensedTestFeaturesPath']
 parser = stanford.StanfordParser(model_path=u"edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz")
 
 def time(func):
@@ -296,7 +298,7 @@ class DataProcessing:
     # 设置特征文件中句子的上一句和下一句的句子标签特征以及段落标签特征
     def integrateSentenceTagContextAndParaTagFeature():
 
-        writeBook = openpyxl.load_workbook(featuresPath)
+        writeBook = openpyxl.load_workbook(condensedTestFeaturesPath)
         writeSheet = writeBook.active
 
         nowEssayId = 0
@@ -322,7 +324,7 @@ class DataProcessing:
                     writeSheet['H' + str(i + 2)] = writeSheet['E' + str(i + 3)].value * 10  # 设置当前句的AfterSentenceTag
 
             beforeEssayId = writeSheet['A' + str(i + 2)].value.strip().split('-')[0]
-        writeBook.save(featuresPath)
+        writeBook.save(condensedTestFeaturesPath)
 
     @staticmethod
     # 设置特征文件中句子的NGram特征
@@ -340,3 +342,5 @@ class DataProcessing:
                 i += 1
 
         writeTestBook.save(testFeaturesPath)
+
+DataProcessing.integrateSentenceTagContextAndParaTagFeature()
