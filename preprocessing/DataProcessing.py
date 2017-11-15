@@ -71,29 +71,37 @@ class DataProcessing:
         return len(words), tag
         # return len(nltk.word_tokenize(sentence))
 
-    # 获取一个句子的分析树的深度
+    # 获取一个句子的分析树的深度以及句子的子句数
     @staticmethod
-    def getParseTreeDepth(sentence):
+    def getParseTreeDepthAndSubClauseNum(sentence):
         trees = parser.raw_parse(sentence)
         tree = next(trees)
-        if tree is None:
-            return 0
-        print(tree)
-        return tree.height()
+        height = 0
+        subClauseNum = 0
+        if tree:
+            height = tree.height()
+            for subtree in tree.subtrees():
+                if subtree.label() == 'SBAR':
+                    subClauseNum += 1
+
+        return height, subClauseNum
 
     # 获取句子时态特征
     @staticmethod
-    def getSentenceTenseAndNNPFlag(sentence):
+    def getSentenceTenseAndPOSFlag(sentence):
         # 分词
         tokens = nltk.word_tokenize(sentence)
         # 词性标注
         tags = nltk.pos_tag(tokens)
         NNPFlag = 0
+        MDFlag = 0
         i_1 = 0
         i_2 = 0
         for tag in tags:
             if tag[1] == 'NNP':
                 NNPFlag = 1
+            if tag[1] == 'MD':
+                MDFlag = 1
             if tag[1] not in configs['tense']:
                 continue
             elif configs['tense'][tag[1]] == 1:
@@ -101,7 +109,7 @@ class DataProcessing:
             elif configs['tense'][tag[1]] == 2:
                 i_2 += 1
         tenseFlag = 1 if i_1 >= i_2 else 2
-        return tenseFlag, NNPFlag
+        return tenseFlag, NNPFlag, MDFlag
 
     # 提取训练集中的篇章结构特征并持久化
     @staticmethod
@@ -125,7 +133,8 @@ class DataProcessing:
             for index in range(len(sentences)):
                 print((i + 2), sentences[index])
                 wordCountAndPunctuation = DataProcessing.getWordCountAndPunctuation(sentences[index])
-                tenseAndNNPFlag = DataProcessing.getSentenceTenseAndNNPFlag(sentences[index])
+                tenseAndPOSFlag = DataProcessing.getSentenceTenseAndPOSFlag(sentences[index])
+                parseTreeDepthAndSubClauseNum = DataProcessing.getParseTreeDepthAndSubClauseNum(sentences[index])
 
                 row = [readSheet['A' + str(i + 2)].value,  # ID
                        readSheet['B' + str(i + 2)].value,  # ParaType
@@ -137,9 +146,11 @@ class DataProcessing:
                        wordCountAndPunctuation[0],  # WordCount
                        wordCountAndPunctuation[1],  # Punctuation
                        index,  # position
-                       DataProcessing.getParseTreeDepth(sentences[index]),  # parseTreeDepth
-                       tenseAndNNPFlag[0],# tense
-                       tenseAndNNPFlag[1], # NNPFlag
+                       parseTreeDepthAndSubClauseNum[0],  # parseTreeDepth
+                       tenseAndPOSFlag[0],# tense
+                       tenseAndPOSFlag[1], # NNPFlag
+                       tenseAndPOSFlag[2],  # MD
+                       parseTreeDepthAndSubClauseNum[1], #subClauseNum
                        0, 0, 0, 0, 0, 0, 0, 0, 0
                        ]
 
@@ -177,7 +188,8 @@ class DataProcessing:
             for index in range(len(sentences)):
                 print(str(k), sentences[index])
                 wordCountAndPunctuation = DataProcessing.getWordCountAndPunctuation(sentences[index])
-                tenseAndNNPFlag = DataProcessing.getSentenceTenseAndNNPFlag(sentences[index])
+                tenseAndPOSFlag = DataProcessing.getSentenceTenseAndPOSFlag(sentences[index])
+                parseTreeDepthAndSubClauseNum = DataProcessing.getParseTreeDepthAndSubClauseNum(sentences[index])
 
                 row = [readSheet['A' + str(k)].value,  # ID
                        readSheet['B' + str(k)].value,  # ParaType
@@ -189,9 +201,11 @@ class DataProcessing:
                        wordCountAndPunctuation[0],  # WordCount
                        wordCountAndPunctuation[1],  # Punctuation
                        index,  # position
-                       DataProcessing.getParseTreeDepth(sentences[index]),  # parseTreeDepth
-                       tenseAndNNPFlag[0],  # tense
-                       tenseAndNNPFlag[1],  # NNPFlag
+                       parseTreeDepthAndSubClauseNum[0],  # parseTreeDepth
+                       tenseAndPOSFlag[0],  # tense
+                       tenseAndPOSFlag[1],  # NNPFlag
+                       tenseAndPOSFlag[2],  # MD
+                       parseTreeDepthAndSubClauseNum[1], # subClauseNum
                        0, 0, 0, 0, 0, 0, 0, 0, 0
                        ]
 
@@ -372,6 +386,30 @@ class DataProcessing:
 
         writeBook.save(filePath)
 
+    @staticmethod
+    def addFeatureColumn(filePath, featureName, featureIndex):
+        writeBook = openpyxl.load_workbook(filePath)
+        writeSheet = writeBook.active
+
+        # 设置特征列名
+        writeSheet[featureIndex + str(1)] = featureName
+        for index in range(writeSheet.max_row - 1):
+            sentence = writeSheet['D' + str(index + 2)].value
+            writeSheet[featureIndex + str(index + 2)] = DataProcessing.getSentenceTenseAndPOSFlag(sentence)[2]
+
+        writeBook.save(filePath)
+
 indicators = ['above', 'conclusion', 'agree', 'admittedly']
 indicatorIndex = ['CF', 'CG', 'CH', 'CI']
-DataProcessing.addNewIndicators(condensedTestFeaturesPath, indicators, indicatorIndex)
+# DataProcessing.addFeatureColumn(condensedTestFeaturesPath, 'MD', 'O')
+# DataProcessing.addNewIndicators(condensedTestFeaturesPath, indicators, indicatorIndex)
+
+scores = [0.78672985782, 0.739336492891, 0.715639810427, 0.781990521327, 0.796208530806,
+          0.75355450237, 0.791469194313, 0.78672985782, 0.815165876777, 0.720379146919,
+          0.791469194313, 0.739336492891, 0.78672985782, 0.781990521327, 0.763033175355,
+          0.78672985782, 0.796208530806]
+scoreTotal = 0
+for s in scores:
+    scoreTotal += s
+
+print(scoreTotal/len(scores))

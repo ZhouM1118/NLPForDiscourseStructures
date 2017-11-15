@@ -227,8 +227,8 @@ params = getFeatureVectorAndTag()
 testParams = getTestFeatureVectorAndTag()
 # doTrain(params[0], params[1], 'ExtraTrees')
 # doTrainByTestSet(params[0], params[1], testParams[0], testParams[1], 'ExtraTrees')
-# doTrainByCrossValidation(params[0], params[1], 1)
-doPredict(params[0], params[1], testParams[0], testParams[1], 1.5)
+# doTrainByCrossValidation(params[0], params[1], 3)
+doPredict(params[0], params[1], testParams[0], testParams[1], 3)
 
 # 计算程序运行总时间(秒)
 elapsed = (datetime.now() - start).seconds
