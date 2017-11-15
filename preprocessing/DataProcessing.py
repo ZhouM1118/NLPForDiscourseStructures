@@ -77,25 +77,30 @@ class DataProcessing:
         tree = next(trees)
         if tree is None:
             return 0
+        print(tree)
         return tree.height()
 
     # 获取句子时态特征
     @staticmethod
-    def getSentenceTense(sentence):
+    def getSentenceTenseAndNNPFlag(sentence):
         # 分词
         tokens = nltk.word_tokenize(sentence)
         # 词性标注
         tags = nltk.pos_tag(tokens)
+        NNPFlag = 0
         i_1 = 0
         i_2 = 0
         for tag in tags:
+            if tag[1] == 'NNP':
+                NNPFlag = 1
             if tag[1] not in configs['tense']:
                 continue
             elif configs['tense'][tag[1]] == 1:
                 i_1 += 1
             elif configs['tense'][tag[1]] == 2:
                 i_2 += 1
-        return 1 if i_1 >= i_2 else 2
+        tenseFlag = 1 if i_1 >= i_2 else 2
+        return tenseFlag, NNPFlag
 
     # 提取训练集中的篇章结构特征并持久化
     @staticmethod
@@ -119,6 +124,7 @@ class DataProcessing:
             for index in range(len(sentences)):
                 print((i + 2), sentences[index])
                 wordCountAndPunctuation = DataProcessing.getWordCountAndPunctuation(sentences[index])
+                tenseAndNNPFlag = DataProcessing.getSentenceTenseAndNNPFlag(sentences[index])
 
                 row = [readSheet['A' + str(i + 2)].value,  # ID
                        readSheet['B' + str(i + 2)].value,  # ParaType
@@ -131,7 +137,8 @@ class DataProcessing:
                        wordCountAndPunctuation[1],  # Punctuation
                        index,  # position
                        DataProcessing.getParseTreeDepth(sentences[index]),  # parseTreeDepth
-                       DataProcessing.getSentenceTense(sentences[index]),  # tense
+                       tenseAndNNPFlag[0],# tense
+                       tenseAndNNPFlag[1], # NNPFlag
                        0, 0, 0, 0, 0, 0, 0, 0, 0
                        ]
 
@@ -169,6 +176,7 @@ class DataProcessing:
             for index in range(len(sentences)):
                 print(str(k), sentences[index])
                 wordCountAndPunctuation = DataProcessing.getWordCountAndPunctuation(sentences[index])
+                tenseAndNNPFlag = DataProcessing.getSentenceTenseAndNNPFlag(sentences[index])
 
                 row = [readSheet['A' + str(k)].value,  # ID
                        readSheet['B' + str(k)].value,  # ParaType
@@ -181,7 +189,8 @@ class DataProcessing:
                        wordCountAndPunctuation[1],  # Punctuation
                        index,  # position
                        DataProcessing.getParseTreeDepth(sentences[index]),  # parseTreeDepth
-                       DataProcessing.getSentenceTense(sentences[index]),  # tense
+                       tenseAndNNPFlag[0],  # tense
+                       tenseAndNNPFlag[1],  # NNPFlag
                        0, 0, 0, 0, 0, 0, 0, 0, 0
                        ]
 
@@ -343,4 +352,12 @@ class DataProcessing:
 
         writeTestBook.save(testFeaturesPath)
 
-DataProcessing.integrateSentenceTagContextAndParaTagFeature()
+
+writeBook = openpyxl.load_workbook(condensedTestFeaturesPath)
+writeSheet = writeBook.active
+
+for i in range(writeSheet.max_row - 1):
+    sentence = writeSheet['D' + str(i + 2)].value
+    writeSheet['N' + str(i + 2)] = DataProcessing.getSentenceTenseAndNNPFlag(sentence)[1]
+
+writeBook.save(condensedTestFeaturesPath)

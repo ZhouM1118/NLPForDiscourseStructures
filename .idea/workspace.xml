@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="135caa5e-c5f6-459c-a4ab-bfe2656a9ab7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Train/train.py" afterPath="$PROJECT_DIR$/Train/train.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.py" afterPath="$PROJECT_DIR$/config.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/preprocessing/DataProcessing.py" afterPath="$PROJECT_DIR$/preprocessing/DataProcessing.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +15,11 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/DiscourseStructures$nltkDemo2.coverage" NAME="nltkDemo2 Coverage Results" MODIFIED="1510130116375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nltkTest" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$nltkDemo.coverage" NAME="nltkDemo Coverage Results" MODIFIED="1510141956849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nltkTest" />
-    <SUITE FILE_PATH="coverage/DiscourseStructures$train.coverage" NAME="train Coverage Results" MODIFIED="1510670802353" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Train" />
+    <SUITE FILE_PATH="coverage/DiscourseStructures$train.coverage" NAME="train Coverage Results" MODIFIED="1510711762600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Train" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$ExtractTestSetByNGram.coverage" NAME="ExtractTestSetByNGram Coverage Results" MODIFIED="1510453386049" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SRILM" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$nltkDemo3.coverage" NAME="nltkDemo3 Coverage Results" MODIFIED="1510294099395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nltkTest" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$IntegrateNGramFeature.coverage" NAME="IntegrateNGramFeature Coverage Results" MODIFIED="1510454924095" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SRILM" />
-    <SUITE FILE_PATH="coverage/DiscourseStructures$DataProcessing.coverage" NAME="DataProcessing Coverage Results" MODIFIED="1510662078511" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/preprocessing" />
+    <SUITE FILE_PATH="coverage/DiscourseStructures$DataProcessing.coverage" NAME="DataProcessing Coverage Results" MODIFIED="1510710949611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/preprocessing" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$config.coverage" NAME="config Coverage Results" MODIFIED="1510656263832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$test.coverage" NAME="test Coverage Results" MODIFIED="1510196887706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nltkTest" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$DecisionTree.coverage" NAME="DecisionTree Coverage Results" MODIFIED="1510476589682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Train" />
@@ -48,13 +46,13 @@
       <file leaf-file-name="DataProcessing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocessing/DataProcessing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="164" column="0" lean-forward="true" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+            <state relative-caret-position="1984">
+              <caret line="354" column="0" lean-forward="true" selection-start-line="354" selection-start-column="0" selection-end-line="354" selection-end-column="0" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
-                <element signature="e#7235#10350#0" expanded="false" />
-                <element signature="e#10498#10883#0" expanded="false" />
-                <element signature="e#12466#12924#0" expanded="false" />
+                <element signature="e#7615#10730#0" expanded="false" />
+                <element signature="e#10878#11263#0" expanded="false" />
+                <element signature="e#12846#13304#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -63,8 +61,8 @@
       <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Train/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="153" column="0" lean-forward="true" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+            <state relative-caret-position="308">
+              <caret line="152" column="59" lean-forward="false" selection-start-line="152" selection-start-column="59" selection-end-line="152" selection-end-column="59" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -406,9 +404,9 @@
           <caret line="269" column="17" lean-forward="true" selection-start-line="269" selection-start-column="4" selection-end-line="269" selection-end-column="17" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#7235#10350#0" expanded="false" />
-            <element signature="e#10498#10883#0" expanded="false" />
-            <element signature="e#12466#12924#0" expanded="false" />
+            <element signature="e#7615#10730#0" expanded="false" />
+            <element signature="e#10878#11263#0" expanded="false" />
+            <element signature="e#12846#13304#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -574,19 +572,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/DataProcessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="164" column="0" lean-forward="true" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#7235#10350#0" expanded="false" />
-            <element signature="e#10498#10883#0" expanded="false" />
-            <element signature="e#12466#12924#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -595,10 +580,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing/DataProcessing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1984">
+          <caret line="354" column="0" lean-forward="true" selection-start-line="354" selection-start-column="0" selection-end-line="354" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#7615#10730#0" expanded="false" />
+            <element signature="e#10878#11263#0" expanded="false" />
+            <element signature="e#12846#13304#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Train/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="153" column="0" lean-forward="true" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+        <state relative-caret-position="308">
+          <caret line="152" column="59" lean-forward="false" selection-start-line="152" selection-start-column="59" selection-end-line="152" selection-end-column="59" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

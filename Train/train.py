@@ -102,7 +102,7 @@ def doTrain(X, Y, flag='RandomForest'):
 def doTrainByTestSet(train_X, train_Y, test_X, test_Y, flag='RandomForest'):
 
     clf = RandomForestClassifier(n_estimators=10)
-    filePath = '/Users/ming.zhou/NLP/DiscourseStructures/result/' + flag + 'Result20171114.text'
+    filePath = '/Users/ming.zhou/NLP/DiscourseStructures/result/' + flag + 'Result20171115.text'
 
     if flag == 'ExtraTrees':
         clf = ExtraTreesClassifier(n_estimators=10)
@@ -142,14 +142,14 @@ def doTrainByTestSet(train_X, train_Y, test_X, test_Y, flag='RandomForest'):
 
     sortedResult = sorted(compare.items(), key=lambda d: -d[1])
 
-    resultContent.append(str(sortedResult))
+    resultContent.append(str(sortedResult) + '\n')
     print(sortedResult)
     result.writelines(resultContent)
     result.close()
 
 params = getFeatureVectorAndTag()
 testParams = getTestFeatureVectorAndTag()
-# doTrain(params[0], params[1])
+# doTrain(params[0], params[1], 'ExtraTrees')
 doTrainByTestSet(params[0], params[1], testParams[0], testParams[1], 'ExtraTrees')
 
 # indicators = {}
