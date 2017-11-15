@@ -4,6 +4,7 @@ configs = {
     'testFeaturesPath' : '/Users/ming.zhou/NLP/datasets/TestFeatures.xlsx',
     'condensedTestFeaturesPath' : '/Users/ming.zhou/NLP/datasets/condensedTestFeatures.xlsx',
     'dataSetPath' : '/Users/ming.zhou/NLP/datasets/AW_MLParaData.xlsx',
+    'allFeaturesPath' : '/Users/ming.zhou/NLP/datasets/allFeatures.xlsx',
     'Tags' : {
         '<BG>' : 1,
         '<PT>' : 2,
@@ -44,7 +45,7 @@ configs = {
                     'separately', 'similarly', 'simultaneously', 'since', 'so that', 'specifically',
                     'still', 'then', 'thereafter', 'thereby', 'therefore', 'though', 'thus',
                     'till', 'ultimately', 'unless', 'until', 'when', 'when and if', 'whereas', 'while',
-                    'yet'),
+                    'yet', 'father', 'mother', 'parents', 'above', 'conclusion', 'agree', 'admittedly'),
     'condensedIndicators' : ('accordingly', 'after', 'also',
                     'although', 'as a result', 'as if', 'as long as',
                     'as soon as','as well', 'because', 'before',
@@ -58,7 +59,8 @@ configs = {
                     'on the other hand', 'once', 'rather',
                     'separately', 'since', 'so that',
                     'still', 'then', 'thereafter', 'therefore', 'though', 'thus',
-                    'till', 'unless', 'until', 'when', 'whereas', 'while'),
+                    'till', 'unless', 'until', 'when', 'whereas', 'while', 'father', 'mother',
+                    'parents', 'above', 'conclusion', 'agree', 'admittedly'),
     'punctuation' : {
         '.' : 1,
         '?' : 2,

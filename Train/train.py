@@ -6,6 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 # from sklearn.cross_validation import cross_val_score
 from sklearn.metrics import hamming_loss
 from datetime import datetime
@@ -15,15 +16,14 @@ configs = config.configs
 # 记录程序开始执行时间
 start = datetime.now()
 
-# readBook = openpyxl.load_workbook(configs['extractFeaturesPath'])
 readBook = openpyxl.load_workbook(configs['condensedFeaturesPath'])
-# readBook = openpyxl.load_workbook(configs['condensedTestFeaturesPath'])
-# readBook = openpyxl.load_workbook(configs['featuresPath'])
 readSheet = readBook.active
 
-# readTestBook = openpyxl.load_workbook(configs['testFeaturesPath'])
 readTestBook = openpyxl.load_workbook(configs['condensedTestFeaturesPath'])
 readTestSheet = readTestBook.active
+
+readAllBook = openpyxl.load_workbook(configs['allFeaturesPath'])
+readAllSheet = readAllBook.active
 
 # 获取训练集的句子特征向量以及句子标签
 def getFeatureVectorAndTag():
@@ -64,7 +64,7 @@ def getTestFeatureVectorAndTag():
 # 训练并测试训练集的准确度
 def doTrain(X, Y, flag='RandomForest'):
 
-    clf = RandomForestClassifier(n_estimators=10) # 0.99710982659
+    clf = RandomForestClassifier(n_estimators=10)
     if flag == 'ExtraTrees':
         clf = ExtraTreesClassifier(n_estimators=10)
     elif flag == 'DecisionTree':
@@ -147,22 +147,88 @@ def doTrainByTestSet(train_X, train_Y, test_X, test_Y, flag='RandomForest'):
     result.writelines(resultContent)
     result.close()
 
+def doTrainByCrossValidation(X, y, timesNum, flag='ExtraTrees'):
+    clf = ExtraTreesClassifier(n_estimators=10)
+    filePath = '/Users/ming.zhou/NLP/DiscourseStructures/result/' + flag + 'CrossValidationResult2017111502.text'
+
+    result = open(filePath, 'a')
+    resultContent = []
+    resultContent.append('**********************step='+str(timesNum)+'**********************' + '\n')
+    if flag == 'RandomForest':
+        clf = RandomForestClassifier(n_estimators=10)
+    elif flag == 'DecisionTree':
+        clf = DecisionTreeClassifier()
+    elif flag == 'SVM':
+        clf = svm.SVC()
+
+    # 随机划分训练集与测试集，是交叉验证中常用的函数
+    sumNum = 0
+    for i in range(10):
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+        clf.fit(X_train, y_train)
+        # Y_pred = clf.predict(X_test)
+        score = clf.score(X_test, y_test)
+        resultContent.append('index[' + str(i) + ']' + str(score) + '\n')
+        print(score)
+
+        sumNum += score
+    resultContent.append('平均准确度：' + str(sumNum/10) + '\n')
+    result.writelines(resultContent)
+    result.close()
+    print('平均准确度：', str(sumNum/10))
+
+def doPredict(X_train, Y_train, X_test, Y_test, timesNum, flag='ExtraTrees'):
+    clf = ExtraTreesClassifier(n_estimators=10)
+    filePath = '/Users/ming.zhou/NLP/DiscourseStructures/result/' + flag + 'PredictResult2017111502.text'
+
+    if flag == 'RandomForest':
+        clf = RandomForestClassifier(n_estimators=10)
+    elif flag == 'DecisionTree':
+        clf = DecisionTreeClassifier()
+    elif flag == 'SVM':
+        clf = svm.SVC()
+
+    clf.fit(X_train, Y_train)
+    Y_pred = clf.predict(X_test)
+    score = clf.score(X_test, Y_test)
+
+    print(score)
+    print(Y_test)
+    print(Y_pred)
+    print('test_Y len is ', len(Y_test), 'Y_pred len is ', len(Y_pred))
+
+    result = open(filePath, 'a')
+    resultContent = []
+    resultContent.append('**********************step=' + str(timesNum) + '**********************' + '\n')
+    resultContent.append(str(score) + '\n')
+    resultContent.append('test_Y:' + '\n')
+    resultContent.append(str(Y_test) + '\n')
+    resultContent.append('Y_pred:' + '\n')
+    resultContent.append(str(Y_pred) + '\n')
+    resultContent.append('test_Y len is ' + str(len(Y_test)) + 'Y_pred len is ' + str(len(Y_pred)) + '\n')
+
+    compare = {}
+    for i in range(len(Y_test)):
+        YAndYpred = str(Y_test[i]) + '-' + str(Y_pred[i])
+        # print(YAndYpred)
+        if (Y_test[i] != Y_pred[i]):
+            if YAndYpred not in compare:
+                compare[YAndYpred] = 1
+            else:
+                compare[YAndYpred] = compare[YAndYpred] + 1
+
+    sortedResult = sorted(compare.items(), key=lambda d: -d[1])
+    print(sortedResult)
+    resultContent.append(str(sortedResult) + '\n')
+    result.writelines(resultContent)
+    result.close()
+
 params = getFeatureVectorAndTag()
 testParams = getTestFeatureVectorAndTag()
 # doTrain(params[0], params[1], 'ExtraTrees')
-doTrainByTestSet(params[0], params[1], testParams[0], testParams[1], 'ExtraTrees')
-
-# indicators = {}
-# for j in range(readSheet.max_column - 22):
-#     indicator = readSheet.cell(row=1, column=j + 23).value
-#     sumNum = 0
-#     for i in range(readSheet.max_row - 1):
-#         sumNum += readSheet.cell(row=i + 2, column=j + 23).value
-#     indicators[indicator] = sumNum
-# sortedResult = sorted(indicators.items(), key=lambda d: -d[1], reverse=True)
-# print(len(indicators))
-# print(sortedResult)
-
+# doTrainByTestSet(params[0], params[1], testParams[0], testParams[1], 'ExtraTrees')
+# doTrainByCrossValidation(params[0], params[1], 1)
+doPredict(params[0], params[1], testParams[0], testParams[1], 1.5)
 
 # 计算程序运行总时间(秒)
 elapsed = (datetime.now() - start).seconds

@@ -17,6 +17,7 @@ featuresPath = configs['featuresPath']
 condensedFeaturesPath = configs['condensedFeaturesPath']
 testFeaturesPath = configs['testFeaturesPath']
 condensedTestFeaturesPath = configs['condensedTestFeaturesPath']
+allFeaturesPath = configs['allFeaturesPath']
 parser = stanford.StanfordParser(model_path=u"edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz")
 
 def time(func):
@@ -208,22 +209,22 @@ class DataProcessing:
     @staticmethod
     # 从featuresPath中分别提取不同标签的句子到指定路径下的对应文件中
     def extractTagSentenceFile():
-        readBook = openpyxl.load_workbook(featuresPath)
+        readBook = openpyxl.load_workbook(allFeaturesPath)
         readSheet = readBook.active
 
-        BGFile = open('/Users/ming.zhou/NLP/datasets/ngram/BGFile.txt', 'a')
-        PTFile = open('/Users/ming.zhou/NLP/datasets/ngram/PTFile.txt', 'a')
-        TSTFile = open('/Users/ming.zhou/NLP/datasets/ngram/TSTFile.txt', 'a')
-        RSFile = open('/Users/ming.zhou/NLP/datasets/ngram/RSFile.txt', 'a')
-        REXPFile = open('/Users/ming.zhou/NLP/datasets/ngram/REXPFile.txt', 'a')
-        EGFile = open('/Users/ming.zhou/NLP/datasets/ngram/EGFile.txt', 'a')
-        EEXPFile = open('/Users/ming.zhou/NLP/datasets/ngram/EEXPFile.txt', 'a')
-        GRLFile = open('/Users/ming.zhou/NLP/datasets/ngram/GRLFile.txt', 'a')
-        ADMFile = open('/Users/ming.zhou/NLP/datasets/ngram/ADMFile.txt', 'a')
-        RTTFile = open('/Users/ming.zhou/NLP/datasets/ngram/RTTFile.txt', 'a')
-        SRSFile = open('/Users/ming.zhou/NLP/datasets/ngram/SRSFile.txt', 'a')
-        RAFMFile = open('/Users/ming.zhou/NLP/datasets/ngram/RAFMFile.txt', 'a')
-        IRLFile = open('/Users/ming.zhou/NLP/datasets/ngram/IRLFile.txt', 'a')
+        BGFile = open('/Users/ming.zhou/NLP/datasets/ngram/allBGFile.txt', 'a')
+        PTFile = open('/Users/ming.zhou/NLP/datasets/ngram/allPTFile.txt', 'a')
+        TSTFile = open('/Users/ming.zhou/NLP/datasets/ngram/allTSTFile.txt', 'a')
+        RSFile = open('/Users/ming.zhou/NLP/datasets/ngram/allRSFile.txt', 'a')
+        REXPFile = open('/Users/ming.zhou/NLP/datasets/ngram/allREXPFile.txt', 'a')
+        EGFile = open('/Users/ming.zhou/NLP/datasets/ngram/allEGFile.txt', 'a')
+        EEXPFile = open('/Users/ming.zhou/NLP/datasets/ngram/allEEXPFile.txt', 'a')
+        GRLFile = open('/Users/ming.zhou/NLP/datasets/ngram/allGRLFile.txt', 'a')
+        ADMFile = open('/Users/ming.zhou/NLP/datasets/ngram/allADMFile.txt', 'a')
+        RTTFile = open('/Users/ming.zhou/NLP/datasets/ngram/allRTTFile.txt', 'a')
+        SRSFile = open('/Users/ming.zhou/NLP/datasets/ngram/allSRSFile.txt', 'a')
+        RAFMFile = open('/Users/ming.zhou/NLP/datasets/ngram/allRAFMFile.txt', 'a')
+        IRLFile = open('/Users/ming.zhou/NLP/datasets/ngram/allIRLFile.txt', 'a')
 
         BGContent = []
         PTContent = []
@@ -338,7 +339,7 @@ class DataProcessing:
     @staticmethod
     # 设置特征文件中句子的NGram特征
     def integrateNGramFeature(ngramResultFilePath, featureFileColumnIndex):
-        writeTestBook = openpyxl.load_workbook(testFeaturesPath)
+        writeTestBook = openpyxl.load_workbook(allFeaturesPath)
         writeTestSheet = writeTestBook.active
 
         resultFile = open(ngramResultFilePath)
@@ -350,14 +351,27 @@ class DataProcessing:
                 writeTestSheet[featureFileColumnIndex + str(i)] = re.split('=', result[0])[1].strip().split(' ')[0]
                 i += 1
 
-        writeTestBook.save(testFeaturesPath)
+        writeTestBook.save(allFeaturesPath)
 
+    @staticmethod
+    def addNewIndicators(filePath, indicators, indicatorIndex):
+        writeBook = openpyxl.load_workbook(filePath)
+        writeSheet = writeBook.active
 
-writeBook = openpyxl.load_workbook(condensedTestFeaturesPath)
-writeSheet = writeBook.active
+        for index in range(writeSheet.max_row - 1):
+            sentence = writeSheet['D' + str(index + 2)].value
+            row = []
+            for i in range(len(indicators)):
+                if indicators[i] in sentence or indicators[i].capitalize() in sentence:
+                    row.append(1)
+                else:
+                    row.append(0)
 
-for i in range(writeSheet.max_row - 1):
-    sentence = writeSheet['D' + str(i + 2)].value
-    writeSheet['N' + str(i + 2)] = DataProcessing.getSentenceTenseAndNNPFlag(sentence)[1]
+            for k in range(len(indicatorIndex)):
+                writeSheet[indicatorIndex[k] + str(index + 2)] = row[k]
 
-writeBook.save(condensedTestFeaturesPath)
+        writeBook.save(filePath)
+
+indicators = ['above', 'conclusion', 'agree', 'admittedly']
+indicatorIndex = ['CF', 'CG', 'CH', 'CI']
+DataProcessing.addNewIndicators(condensedTestFeaturesPath, indicators, indicatorIndex)
