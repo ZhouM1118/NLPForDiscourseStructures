@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="135caa5e-c5f6-459c-a4ab-bfe2656a9ab7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Train/train.py" afterPath="$PROJECT_DIR$/Train/train.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/preprocessing/DataProcessing.py" afterPath="$PROJECT_DIR$/preprocessing/DataProcessing.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/ExtraTreesCrossValidationResult2017111502.text" afterPath="$PROJECT_DIR$/result/ExtraTreesCrossValidationResult2017111502.text" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/ExtraTreesPredictResult2017111502.text" afterPath="$PROJECT_DIR$/result/ExtraTreesPredictResult2017111502.text" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,11 +15,11 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/DiscourseStructures$nltkDemo2.coverage" NAME="nltkDemo2 Coverage Results" MODIFIED="1510130116375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nltkTest" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$nltkDemo.coverage" NAME="nltkDemo Coverage Results" MODIFIED="1510141956849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nltkTest" />
-    <SUITE FILE_PATH="coverage/DiscourseStructures$train.coverage" NAME="train Coverage Results" MODIFIED="1510757749538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Train" />
+    <SUITE FILE_PATH="coverage/DiscourseStructures$train.coverage" NAME="train Coverage Results" MODIFIED="1510907138445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Train" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$ExtractTestSetByNGram.coverage" NAME="ExtractTestSetByNGram Coverage Results" MODIFIED="1510453386049" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SRILM" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$nltkDemo3.coverage" NAME="nltkDemo3 Coverage Results" MODIFIED="1510294099395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nltkTest" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$IntegrateNGramFeature.coverage" NAME="IntegrateNGramFeature Coverage Results" MODIFIED="1510454924095" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SRILM" />
-    <SUITE FILE_PATH="coverage/DiscourseStructures$DataProcessing.coverage" NAME="DataProcessing Coverage Results" MODIFIED="1510758417153" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/preprocessing" />
+    <SUITE FILE_PATH="coverage/DiscourseStructures$DataProcessing.coverage" NAME="DataProcessing Coverage Results" MODIFIED="1510900535757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/preprocessing" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$config.coverage" NAME="config Coverage Results" MODIFIED="1510656263832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$test.coverage" NAME="test Coverage Results" MODIFIED="1510196887706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nltkTest" />
     <SUITE FILE_PATH="coverage/DiscourseStructures$DecisionTree.coverage" NAME="DecisionTree Coverage Results" MODIFIED="1510476589682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Train" />
@@ -46,15 +43,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataProcessing.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DataProcessing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocessing/DataProcessing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="408" column="41" lean-forward="false" selection-start-line="408" selection-start-column="41" selection-end-line="408" selection-end-column="41" />
+            <state relative-caret-position="3770">
+              <caret line="408" column="13" lean-forward="true" selection-start-line="408" selection-start-column="13" selection-end-line="408" selection-end-column="13" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
-                <element signature="e#8367#11524#0" expanded="false" />
-                <element signature="e#12181#13512#0" expanded="false" />
+                <element signature="e#3697#5971#0" expanded="false" />
+                <element signature="e#6074#8378#0" expanded="false" />
+                <element signature="e#8484#11641#0" expanded="false" />
+                <element signature="e#12298#13629#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -70,13 +69,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Train/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="231" column="0" lean-forward="true" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="404" column="19" lean-forward="true" selection-start-line="404" selection-start-column="19" selection-end-line="404" selection-end-column="19" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#3532#4473#0" expanded="false" />
+                <element signature="e#4569#6105#0" expanded="false" />
+                <element signature="e#7356#8570#0" expanded="false" />
+                <element signature="e#10347#12090#0" expanded="false" />
+                <element signature="e#12185#13962#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -85,8 +89,8 @@
       <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="32" column="6" lean-forward="true" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+            <state relative-caret-position="134">
+              <caret line="54" column="28" lean-forward="false" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -95,8 +99,8 @@
       <file leaf-file-name="DataNormalize.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocessing/DataNormalize.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+            <state relative-caret-position="280">
+              <caret line="14" column="37" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="14" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -154,8 +158,8 @@
         <option value="$PROJECT_DIR$/preprocessing/DataNormalize.py" />
         <option value="$PROJECT_DIR$/Train/DecisionTree.py" />
         <option value="$PROJECT_DIR$/config.py" />
-        <option value="$PROJECT_DIR$/Train/train.py" />
         <option value="$PROJECT_DIR$/preprocessing/DataProcessing.py" />
+        <option value="$PROJECT_DIR$/Train/train.py" />
       </list>
     </option>
   </component>
@@ -166,9 +170,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="32" />
+    <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="1001" />
+    <option name="height" value="736" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -235,7 +239,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.DataProcessing">
+  <component name="RunManager" selected="Python.train">
     <configuration name="DataProcessing" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -335,8 +339,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.DataProcessing" />
-        <item index="1" class="java.lang.String" itemvalue="Python.train" />
+        <item index="0" class="java.lang.String" itemvalue="Python.train" />
+        <item index="1" class="java.lang.String" itemvalue="Python.DataProcessing" />
         <item index="2" class="java.lang.String" itemvalue="Python.config" />
         <item index="3" class="java.lang.String" itemvalue="Python.DecisionTree" />
         <item index="4" class="java.lang.String" itemvalue="Python.SVMTrain" />
@@ -361,6 +365,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="736" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2536349" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -368,7 +373,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32917318" sideWeight="0.49676898" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32917318" sideWeight="0.49676898" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -391,7 +396,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -410,8 +415,10 @@
           <caret line="269" column="17" lean-forward="true" selection-start-line="269" selection-start-column="4" selection-end-line="269" selection-end-column="17" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#8367#11524#0" expanded="false" />
-            <element signature="e#12181#13512#0" expanded="false" />
+            <element signature="e#3697#5971#0" expanded="false" />
+            <element signature="e#6074#8378#0" expanded="false" />
+            <element signature="e#8484#11641#0" expanded="false" />
+            <element signature="e#12298#13629#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -539,14 +546,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/DataNormalize.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Train/DecisionTree.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1461">
@@ -577,30 +576,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="32" column="6" lean-forward="true" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+        <state relative-caret-position="134">
+          <caret line="54" column="28" lean-forward="false" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Train/train.py">
+    <entry file="file://$PROJECT_DIR$/preprocessing/DataNormalize.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="231" column="0" lean-forward="true" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="280">
+          <caret line="14" column="37" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="14" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing/DataProcessing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="408" column="41" lean-forward="false" selection-start-line="408" selection-start-column="41" selection-end-line="408" selection-end-column="41" />
+        <state relative-caret-position="3770">
+          <caret line="408" column="13" lean-forward="true" selection-start-line="408" selection-start-column="13" selection-end-line="408" selection-end-column="13" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#8367#11524#0" expanded="false" />
-            <element signature="e#12181#13512#0" expanded="false" />
+            <element signature="e#3697#5971#0" expanded="false" />
+            <element signature="e#6074#8378#0" expanded="false" />
+            <element signature="e#8484#11641#0" expanded="false" />
+            <element signature="e#12298#13629#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Train/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="404" column="19" lean-forward="true" selection-start-line="404" selection-start-column="19" selection-end-line="404" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#3532#4473#0" expanded="false" />
+            <element signature="e#4569#6105#0" expanded="false" />
+            <element signature="e#7356#8570#0" expanded="false" />
+            <element signature="e#10347#12090#0" expanded="false" />
+            <element signature="e#12185#13962#0" expanded="false" />
           </folding>
         </state>
       </provider>

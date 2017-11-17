@@ -20,6 +20,7 @@ condensedTestFeaturesPath = configs['condensedTestFeaturesPath']
 allFeaturesPath = configs['allFeaturesPath']
 parser = stanford.StanfordParser(model_path=u"edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz")
 
+
 def time(func):
     def wrapper(*args):
         # 记录程序开始执行时间
@@ -95,6 +96,7 @@ class DataProcessing:
         tags = nltk.pos_tag(tokens)
         NNPFlag = 0
         MDFlag = 0
+        PRPFlag = 0
         i_1 = 0
         i_2 = 0
         for tag in tags:
@@ -102,6 +104,8 @@ class DataProcessing:
                 NNPFlag = 1
             if tag[1] == 'MD':
                 MDFlag = 1
+            if tag[1] == 'PRP' or tag[1] == 'PRP$':
+                PRPFlag += 1
             if tag[1] not in configs['tense']:
                 continue
             elif configs['tense'][tag[1]] == 1:
@@ -109,7 +113,7 @@ class DataProcessing:
             elif configs['tense'][tag[1]] == 2:
                 i_2 += 1
         tenseFlag = 1 if i_1 >= i_2 else 2
-        return tenseFlag, NNPFlag, MDFlag
+        return tenseFlag, NNPFlag, MDFlag, PRPFlag
 
     # 提取训练集中的篇章结构特征并持久化
     @staticmethod
@@ -147,10 +151,10 @@ class DataProcessing:
                        wordCountAndPunctuation[1],  # Punctuation
                        index,  # position
                        parseTreeDepthAndSubClauseNum[0],  # parseTreeDepth
-                       tenseAndPOSFlag[0],# tense
-                       tenseAndPOSFlag[1], # NNPFlag
+                       tenseAndPOSFlag[0],  # tense
+                       tenseAndPOSFlag[1],  # NNPFlag
                        tenseAndPOSFlag[2],  # MD
-                       parseTreeDepthAndSubClauseNum[1], #subClauseNum
+                       parseTreeDepthAndSubClauseNum[1],  # subClauseNum
                        0, 0, 0, 0, 0, 0, 0, 0, 0
                        ]
 
@@ -205,7 +209,7 @@ class DataProcessing:
                        tenseAndPOSFlag[0],  # tense
                        tenseAndPOSFlag[1],  # NNPFlag
                        tenseAndPOSFlag[2],  # MD
-                       parseTreeDepthAndSubClauseNum[1], # subClauseNum
+                       parseTreeDepthAndSubClauseNum[1],  # subClauseNum
                        0, 0, 0, 0, 0, 0, 0, 0, 0
                        ]
 
@@ -395,21 +399,11 @@ class DataProcessing:
         writeSheet[featureIndex + str(1)] = featureName
         for index in range(writeSheet.max_row - 1):
             sentence = writeSheet['D' + str(index + 2)].value
-            writeSheet[featureIndex + str(index + 2)] = DataProcessing.getSentenceTenseAndPOSFlag(sentence)[2]
+            writeSheet[featureIndex + str(index + 2)] = DataProcessing.getSentenceTenseAndPOSFlag(sentence)[3]
 
         writeBook.save(filePath)
 
 indicators = ['above', 'conclusion', 'agree', 'admittedly']
 indicatorIndex = ['CF', 'CG', 'CH', 'CI']
-# DataProcessing.addFeatureColumn(condensedTestFeaturesPath, 'MD', 'O')
+# DataProcessing.addFeatureColumn('/Users/ming.zhou/NLP/datasets/eliminateParaTagTest.xlsx', 'PRP', 'P')
 # DataProcessing.addNewIndicators(condensedTestFeaturesPath, indicators, indicatorIndex)
-
-scores = [0.78672985782, 0.739336492891, 0.715639810427, 0.781990521327, 0.796208530806,
-          0.75355450237, 0.791469194313, 0.78672985782, 0.815165876777, 0.720379146919,
-          0.791469194313, 0.739336492891, 0.78672985782, 0.781990521327, 0.763033175355,
-          0.78672985782, 0.796208530806]
-scoreTotal = 0
-for s in scores:
-    scoreTotal += s
-
-print(scoreTotal/len(scores))
