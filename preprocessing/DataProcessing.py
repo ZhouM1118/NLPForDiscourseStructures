@@ -13,11 +13,23 @@ os.environ["STANFORD_MODELS"] = configs['stanfordParserModelsPath']
 nltk.data.path.append(configs['nltkDataPath'])
 
 data_set_path = configs['dataSetPath']
+data2_set_path = configs['data2SetPath']
 features_path = configs['featuresPath']
 condensed_features_path = configs['condensedFeaturesPath']
 test_features_path = configs['testFeaturesPath']
+test2_path = configs['test2Path']
+test3_path = configs['test3Path']
+test4_path = configs['test4Path']
+test5_path = configs['test5Path']
+test_last_20_add20_Path = configs['test_last_20_add20_Path']
+test_last_20_add30_Path = configs['test_last_20_add30_Path']
+test_last_20_add40_Path = configs['test_last_20_add40_Path']
+test_last_20_allFeatures_Path = configs['test_last_20_allFeatures_Path']
 condensed_test_features_path = configs['condensedTestFeaturesPath']
 all_features_path = configs['allFeaturesPath']
+all_features_add20_path = configs['allFeatures_add20_Path']
+all_features_add30_path = configs['allFeatures_add30_Path']
+all_features_add40_path = configs['allFeatures_add40_Path']
 parser = stanford.StanfordParser(model_path=u"edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz")
 
 
@@ -208,15 +220,15 @@ class DataProcessing(object):
         :return:
         """
 
-        read_book = openpyxl.load_workbook(data_set_path)
+        read_book = openpyxl.load_workbook(data2_set_path)
         read_sheet = read_book.active
-        write_test_book = openpyxl.load_workbook(test_features_path)
+        write_test_book = openpyxl.load_workbook(test5_path)
         write_test_sheet = write_test_book.active
 
         rows = []
 
-        for i in range(51):
-            k = i + read_sheet.max_row - 50
+        for i in range(53):
+            k = i + 238
             para_content_tag = read_sheet['H' + str(k)].value
             sentences_and_tag = DataProcessing.segregate_sentence_by_tag(para_content_tag.strip())
 
@@ -234,20 +246,21 @@ class DataProcessing(object):
                        read_sheet['E' + str(k)].value,  # Structure
                        sentences[index],  # SentenceContent
                        tags[index],  # SentenceTag
-                       configs['paraType'][read_sheet['B' + str(k)].value],  # ParaTag
+                       # configs['paraType'][read_sheet['B' + str(k)].value],  # ParaTag
                        0, 0,  # BeforeSentenceTag,AfterSentenceTag
                        word_count_and_punctuation[0],  # WordCount
                        word_count_and_punctuation[1],  # Punctuation
                        index,  # position
                        parsetree_depth_and_subclause_num[0],  # parseTreeDepth
                        tense_and_pos_flag[0],  # tense
-                       tense_and_pos_flag[1],  # NNPFlag
+                       tense_and_pos_flag[1],  # NNP
                        tense_and_pos_flag[2],  # MD
+                       tense_and_pos_flag[3],  # PRP
                        parsetree_depth_and_subclause_num[1],  # subClauseNum
-                       0, 0, 0, 0, 0, 0, 0, 0, 0
+                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
                        ]
 
-                for indicator in configs['indicators']:
+                for indicator in configs['condensedIndicators']:
                     row.append(1) if indicator in sentences[index] \
                                      or indicator.capitalize() in sentences[index] else row.append(0)
 
@@ -256,30 +269,30 @@ class DataProcessing(object):
         for row in rows:
             write_test_sheet.append(row)
 
-        write_test_book.save(test_features_path)
+        write_test_book.save(test5_path)
 
     @staticmethod
-    def extractTagSentenceFile():
+    def extract_tag_sentence_file():
         """
         从featuresPath中分别提取不同标签的句子到指定路径下的对应文件中
         :return:
         """
-        read_book = openpyxl.load_workbook(all_features_path)
+        read_book = openpyxl.load_workbook(all_features_add40_path)
         read_sheet = read_book.active
 
-        BG_file = open('/Users/ming.zhou/NLP/datasets/ngram/allBGFile.txt', 'a')
-        PT_file = open('/Users/ming.zhou/NLP/datasets/ngram/allPTFile.txt', 'a')
-        TST_file = open('/Users/ming.zhou/NLP/datasets/ngram/allTSTFile.txt', 'a')
-        RS_file = open('/Users/ming.zhou/NLP/datasets/ngram/allRSFile.txt', 'a')
-        REXP_file = open('/Users/ming.zhou/NLP/datasets/ngram/allREXPFile.txt', 'a')
-        EG_file = open('/Users/ming.zhou/NLP/datasets/ngram/allEGFile.txt', 'a')
-        EEXP_file = open('/Users/ming.zhou/NLP/datasets/ngram/allEEXPFile.txt', 'a')
-        GRL_file = open('/Users/ming.zhou/NLP/datasets/ngram/allGRLFile.txt', 'a')
-        ADM_file = open('/Users/ming.zhou/NLP/datasets/ngram/allADMFile.txt', 'a')
-        RTT_file = open('/Users/ming.zhou/NLP/datasets/ngram/allRTTFile.txt', 'a')
-        SRS_file = open('/Users/ming.zhou/NLP/datasets/ngram/allSRSFile.txt', 'a')
-        RAFM_file = open('/Users/ming.zhou/NLP/datasets/ngram/allRAFMFile.txt', 'a')
-        IRL_file = open('/Users/ming.zhou/NLP/datasets/ngram/allIRLFile.txt', 'a')
+        BG_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_BGFile.txt', 'a')
+        PT_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_PTFile.txt', 'a')
+        TST_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_TSTFile.txt', 'a')
+        RS_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_RSFile.txt', 'a')
+        REXP_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_REXPFile.txt', 'a')
+        EG_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_EGFile.txt', 'a')
+        EEXP_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_EEXPFile.txt', 'a')
+        GRL_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_GRLFile.txt', 'a')
+        ADM_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_ADMFile.txt', 'a')
+        RTT_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_RTTFile.txt', 'a')
+        SRS_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_SRSFile.txt', 'a')
+        RAFM_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_RAFMFile.txt', 'a')
+        IRL_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_IRLFile.txt', 'a')
 
         BGContent = []
         PTContent = []
@@ -371,32 +384,32 @@ class DataProcessing(object):
         :return:
         """
 
-        write_book = openpyxl.load_workbook(condensed_test_features_path)
+        write_book = openpyxl.load_workbook(test_last_20_allFeatures_Path)
         write_sheet = write_book.active
 
         before_essay_id = 0
         for i in range(write_sheet.max_row - 1):
             # 设置特征文件中句子的段落标签特征
-            para_type = write_sheet['B' + str(i + 2)].value
-            write_sheet['F' + str(i + 2)] = configs['para_type'][para_type]
+            # para_type = write_sheet['B' + str(i + 2)].value
+            # write_sheet['F' + str(i + 2)] = configs['para_type'][para_type]
 
             now_essay_id = write_sheet['A' + str(i + 2)].value.strip().split('-')[0]
             is_new_essay = now_essay_id != before_essay_id
 
             if is_new_essay:
-                write_sheet['G' + str(i + 2)] = 0  # 设置当前句的BeforeSentenceTag为0
+                write_sheet['F' + str(i + 2)] = 0  # 设置当前句的BeforeSentenceTag为0
                 if i > 0:
-                    write_sheet['H' + str(i + 1)] = 0  # 设置上一句的AfterSentenceTag为0
-                write_sheet['H' + str(i + 2)] = write_sheet['E' + str(i + 3)].value * 10  # 设置当前句的AfterSentenceTag
+                    write_sheet['G' + str(i + 1)] = 0  # 设置上一句的AfterSentenceTag为0
+                write_sheet['G' + str(i + 2)] = write_sheet['E' + str(i + 3)].value * 10  # 设置当前句的AfterSentenceTag
             else:
-                write_sheet['G' + str(i + 2)] = write_sheet['E' + str(i + 1)].value * 10  # 设置当前句的BeforeSentenceTag
+                write_sheet['F' + str(i + 2)] = write_sheet['E' + str(i + 1)].value * 10  # 设置当前句的BeforeSentenceTag
                 if (i + 2) == write_sheet.max_row:
-                    write_sheet['H' + str(i + 2)] = 0
+                    write_sheet['G' + str(i + 2)] = 0
                 else:
-                    write_sheet['H' + str(i + 2)] = write_sheet['E' + str(i + 3)].value * 10  # 设置当前句的AfterSentenceTag
+                    write_sheet['G' + str(i + 2)] = write_sheet['E' + str(i + 3)].value * 10  # 设置当前句的AfterSentenceTag
 
             before_essay_id = write_sheet['A' + str(i + 2)].value.strip().split('-')[0]
-        write_book.save(condensed_test_features_path)
+        write_book.save(test_last_20_allFeatures_Path)
 
     @staticmethod
     def integrate_ngram_feature(ngram_result_file_path, feature_file_column_index):
@@ -406,7 +419,7 @@ class DataProcessing(object):
         :param feature_file_column_index: 特征文件中指定ngram特征的列标号
         :return:
         """
-        write_test_book = openpyxl.load_workbook(all_features_path)
+        write_test_book = openpyxl.load_workbook(test_last_20_add40_Path)
         write_test_sheet = write_test_book.active
 
         result_file = open(ngram_result_file_path)
@@ -418,7 +431,7 @@ class DataProcessing(object):
                 write_test_sheet[feature_file_column_index + str(i)] = re.split('=', result[0])[1].strip().split(' ')[0]
                 i += 1
 
-        write_test_book.save(all_features_path)
+        write_test_book.save(test_last_20_add40_Path)
 
     @staticmethod
     def add_new_indicators(file_path, indicators, indicator_index):
@@ -471,3 +484,12 @@ class DataProcessing(object):
 # indicator_index = ['CF', 'CG', 'CH', 'CI']
 # DataProcessing.addFeatureColumn('/Users/ming.zhou/NLP/datasets/eliminateParaTagTest.xlsx', 'PRP', 'P')
 # DataProcessing.addNewIndicators(condensedTestFeaturesPath, indicators, indicatorIndex)
+# DataProcessing.extract_test_structural_feature()
+fromPath = '/Users/ming.zhou/NLP/datasets/allFeatures_add40.xlsx'
+toPath = '/Users/ming.zhou/NLP/datasets/ngram/test/allFeatures_add40_File.txt'
+# DataProcessing.extract_all_sentence(fromPath, toPath)
+ngramPath = '/Users/ming.zhou/NLP/datasets/ngram/modal/TEST_Test_last_20_add40_RAFMResult'
+DataProcessing.integrate_ngram_feature(ngramPath, 'AA')
+# DataProcessing.integrate_sentencetag_context_and_paratag_feature()
+# DataProcessing.extractTagSentenceFile()
+# DataProcessing.extract_tag_sentence_file()
