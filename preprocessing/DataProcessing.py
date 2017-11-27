@@ -14,6 +14,9 @@ nltk.data.path.append(configs['nltkDataPath'])
 
 data_set_path = configs['dataSetPath']
 data2_set_path = configs['data2SetPath']
+dataset_new_score_122_path = configs['dataset_newScore_122_path']
+new_score_122_path = configs['dataset_newScore_122_path']
+new_scores_path = configs['new_scores_path']
 features_path = configs['featuresPath']
 condensed_features_path = configs['condensedFeaturesPath']
 test_features_path = configs['testFeaturesPath']
@@ -272,6 +275,46 @@ class DataProcessing(object):
         write_test_book.save(test5_path)
 
     @staticmethod
+    @time
+    def extract_structural_and_score():
+        """
+        提取所有语料库中的篇章结构分数
+        :return:
+        """
+
+        read_book = openpyxl.load_workbook(new_score_122_path)
+        read_sheet = read_book.active
+        write_test_book = openpyxl.load_workbook(new_scores_path)
+        write_test_sheet = write_test_book.active
+
+        rows = []
+
+        for i in range(read_sheet.max_row - 1):
+            k = i + 2
+            para_content_tag = read_sheet['H' + str(k)].value
+            sentences_and_tag = DataProcessing.segregate_sentence_by_tag(para_content_tag.strip())
+
+            sentences = sentences_and_tag[0]
+            tags = sentences_and_tag[1]
+
+            for index in range(len(sentences)):
+                print(str(k), sentences[index])
+
+                row = [read_sheet['A' + str(k)].value,  # ID
+                       read_sheet['B' + str(k)].value,  # ParaType
+                       read_sheet['E' + str(k)].value,  # Structure
+                       sentences[index],  # SentenceContent
+                       tags[index],  # SentenceTag
+                       ]
+
+                rows.append(row)
+
+        for row in rows:
+            write_test_sheet.append(row)
+
+        write_test_book.save(new_scores_path)
+
+    @staticmethod
     def extract_tag_sentence_file():
         """
         从featuresPath中分别提取不同标签的句子到指定路径下的对应文件中
@@ -294,66 +337,66 @@ class DataProcessing(object):
         RAFM_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_RAFMFile.txt', 'a')
         IRL_file = open('/Users/ming.zhou/NLP/datasets/ngram/test2_add40_IRLFile.txt', 'a')
 
-        BGContent = []
-        PTContent = []
-        TSTContent = []
-        RSContent = []
-        REXPContent = []
-        EGContent = []
-        EEXPContent = []
-        GRLContent = []
-        ADMContent = []
-        RTTContent = []
-        SRSContent = []
-        RAFMContent = []
-        IRLContent = []
+        BG_content = []
+        PT_content = []
+        TST_content = []
+        RS_content = []
+        REXP_content = []
+        EG_content = []
+        EEXP_content = []
+        GRL_content = []
+        ADM_content = []
+        RTT_content = []
+        SRS_content = []
+        RAFM_content = []
+        IRL_content = []
 
-        putSentenceByTag = {
-            1: lambda x: BGContent.append(x),
-            2: lambda x: PTContent.append(x),
-            3: lambda x: TSTContent.append(x),
-            4: lambda x: RSContent.append(x),
-            5: lambda x: REXPContent.append(x),
-            6: lambda x: EGContent.append(x),
-            7: lambda x: EEXPContent.append(x),
-            8: lambda x: GRLContent.append(x),
-            9: lambda x: ADMContent.append(x),
-            10: lambda x: RTTContent.append(x),
-            11: lambda x: SRSContent.append(x),
-            12: lambda x: RAFMContent.append(x),
-            13: lambda x: IRLContent.append(x)
+        put_sentence_by_tag = {
+            1: lambda x: BG_content.append(x),
+            2: lambda x: PT_content.append(x),
+            3: lambda x: TST_content.append(x),
+            4: lambda x: RS_content.append(x),
+            5: lambda x: REXP_content.append(x),
+            6: lambda x: EG_content.append(x),
+            7: lambda x: EEXP_content.append(x),
+            8: lambda x: GRL_content.append(x),
+            9: lambda x: ADM_content.append(x),
+            10: lambda x: RTT_content.append(x),
+            11: lambda x: SRS_content.append(x),
+            12: lambda x: RAFM_content.append(x),
+            13: lambda x: IRL_content.append(x)
         }
 
         for i in range(read_sheet.max_row - 1):
-            sentenceTag = read_sheet['E' + str(i + 2)].value
+            sentence_tag = read_sheet['E' + str(i + 2)].value
             sentence = read_sheet['D' + str(i + 2)].value
-            putSentenceByTag[sentenceTag](sentence + '\n')
+            put_sentence_by_tag[sentence_tag](sentence + '\n')
 
-        BG_file.writelines(BGContent)
+        BG_file.writelines(BG_content)
         BG_file.close()
-        PT_file.writelines(PTContent)
+        PT_file.writelines(PT_content)
         PT_file.close()
-        TST_file.writelines(TSTContent)
+        TST_file.writelines(TST_content)
         TST_file.close()
-        RS_file.writelines(RSContent)
+        RS_file.writelines(RS_content)
         RS_file.close()
-        REXP_file.writelines(REXPContent)
+        REXP_file.writelines(REXP_content)
         REXP_file.close()
-        EG_file.writelines(EGContent)
+        EG_file.writelines(EG_content)
         EG_file.close()
-        EEXP_file.writelines(EEXPContent)
+        EEXP_file.writelines(EEXP_content)
         EEXP_file.close()
-        GRL_file.writelines(GRLContent)
+        GRL_file.writelines(GRL_content)
         GRL_file.close()
-        ADM_file.writelines(ADMContent)
+        ADM_file.writelines(ADM_content)
         ADM_file.close()
-        RTT_file.writelines(RTTContent)
+        RTT_file.writelines(RTT_content)
         RTT_file.close()
-        SRS_file.writelines(SRSContent)
+        SRS_file.writelines(SRS_content)
         SRS_file.close()
-        RAFM_file.writelines(RAFMContent)
+        RAFM_file.writelines(RAFM_content)
         RAFM_file.close()
-        IRL_file.writelines(IRLContent)
+        IRL_file.writelines(IRL_content)
         IRL_file.close()
 
     @staticmethod
@@ -489,7 +532,8 @@ fromPath = '/Users/ming.zhou/NLP/datasets/allFeatures_add40.xlsx'
 toPath = '/Users/ming.zhou/NLP/datasets/ngram/test/allFeatures_add40_File.txt'
 # DataProcessing.extract_all_sentence(fromPath, toPath)
 ngramPath = '/Users/ming.zhou/NLP/datasets/ngram/modal/TEST_Test_last_20_add40_RAFMResult'
-DataProcessing.integrate_ngram_feature(ngramPath, 'AA')
+# DataProcessing.integrate_ngram_feature(ngramPath, 'AA')
 # DataProcessing.integrate_sentencetag_context_and_paratag_feature()
 # DataProcessing.extractTagSentenceFile()
 # DataProcessing.extract_tag_sentence_file()
+# DataProcessing.extract_structural_and_score()

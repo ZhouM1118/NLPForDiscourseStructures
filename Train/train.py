@@ -1,6 +1,7 @@
 import openpyxl
 import config
 import math
+import numpy
 from sklearn import svm
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import ExtraTreesClassifier
@@ -8,19 +9,22 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn import cross_validation
-from sklearn import metrics
+from sklearn.metrics import roc_curve, auc
 from sklearn import preprocessing
 from sklearn.grid_search import GridSearchCV
 # from sklearn.cross_validation import cross_val_score
 from sklearn.metrics import hamming_loss
 import pylab as pl
+import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
 from datetime import datetime
 
 configs = config.configs
 
 # 记录程序开始执行时间
-start = datetime.now()
+startTime = datetime.now()
 
 # readBook = openpyxl.load_workbook(configs['condensedFeaturesPath'])
 # readSheet = readBook.active
@@ -64,6 +68,54 @@ def get_feature_vector_and_tag():
                 feature_vector.append(read_all_sheet.cell(row=i + 2, column=j + 6).value)
         feature_vector_list.append(feature_vector)
     return feature_vector_list, sentence_tag
+
+
+def get_tag_and_score(file_path, start, end, para_type='Introduction'):
+    """
+    获取训练集的句子标签以及段落分数
+    :return:
+    """
+    read_book = openpyxl.load_workbook(file_path)
+    read_sheet = read_book.active
+    tags = []
+    tag = []
+    scores = []
+    now_id = read_sheet['A2'].value
+    sentence_tags = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+    max_length = 0
+
+    for i in range(start, end):
+        essay_id = read_sheet['A' + str(i)].value
+        para_type_value = read_sheet['B' + str(i)].value
+        #  判断是否是新的段落
+        if essay_id != now_id:
+            now_id = essay_id
+            if len(tag) != 0:
+                tags.append(tag)
+                score = read_sheet['C' + str(i - 1)].value
+                scores.append(score)
+                # 保存最大的tag长度值
+                if len(tag) > max_length:
+                    max_length = len(tag)
+                tag = []
+        if para_type == para_type_value:
+            tag.append(read_sheet['E' + str(i)].value)
+    tag_features = []
+    for tag in tags:
+        tag_feature = []
+        for sentence_tag in sentence_tags:
+            sum = 0
+            for t in tag:
+                if sentence_tag == t:
+                    sum += 1
+            tag_feature.append(sum)
+        tag_features.append(tag_feature)
+    # 填充tag数据
+    for tag in tags:
+        if len(tag) < max_length:
+            for j in range(max_length - len(tag)):
+                tag.append(0)
+    return tags, scores, tag_features
 
 
 def get_test_feature_vector_and_tag():
@@ -261,6 +313,55 @@ def do_train_by_cv(x, y, times_num, flag='ExtraTrees'):
     return sum_num/10
 
 
+def do_draw_train_auc(x, y, times_num, tag, flag='ExtraTrees'):
+    """
+    画出预测模型上的AUC图
+    :param x: 样本集中的特征向量列表
+    :param y: 样本集中的标签列表
+    :param times_num: 模型的n_estimators值
+    :param tag: 标签名
+    :param flag: 模型指示词
+    :return:
+    """
+    clf = ExtraTreesClassifier(n_estimators=times_num)
+
+    if flag == 'RandomForest':
+        clf = RandomForestClassifier(n_estimators=10)
+    elif flag == 'DecisionTree':
+        clf = DecisionTreeClassifier()
+    elif flag == 'SVM':
+        clf = svm.SVC()
+
+    y_auc = []
+    for c in y:
+        if configs['Tags'][tag] == c:
+            y_auc.append(1)
+        else:
+            y_auc.append(0)
+
+    x_train, x_test, y_train, y_test = train_test_split(x, y_auc, test_size=0.1, random_state=0)
+    clf.fit(x_train, y_train)
+    # Y_pred = clf.predict(x_test)
+    score = clf.score(x_test, y_test)
+    print(score)
+    fpr, tpr, threshold = roc_curve(y_test, score)
+    roc_auc = auc(fpr, tpr)
+
+    plt.figure()
+    lw = 2
+    plt.figure(figsize=(10, 10))
+    plt.plot(fpr, tpr, color='darkorange',
+             lw=lw, label='ROC curve (area = %0.2f)' % roc_auc)  ###假正率为横坐标，真正率为纵坐标做曲线
+    plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('Receiver operating characteristic example')
+    plt.legend(loc="lower right")
+    plt.show()
+
+
 def do_train_by_cv_and_norm(x, y, times_num, flag='ExtraTrees'):
     """
     使用交叉验证以及规范化技术训练模型在训练集上的准确度
@@ -300,6 +401,28 @@ def do_train_by_cv_and_norm(x, y, times_num, flag='ExtraTrees'):
     result.writelines(result_content)
     result.close()
     print('平均准确度：', str(sum_num/10))
+
+
+def do_train_regression(x, y, times_num, flag='linear'):
+    """
+    训练评分回归模型
+    :param x:
+    :param y:
+    :return:
+    """
+    rf = LinearRegression()
+    if flag == 'RandomForest':
+        rf = RandomForestRegressor(n_estimators=times_num)
+
+    rf.fit(x, y)
+    sum_num = 0
+    for i in range(10):
+        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.1, random_state=i)
+        rf.fit(x_train, y_train)
+        # Y_pred = clf.predict(x_test)
+        score = rf.score(x_test, y_test)
+        sum_num += score
+    return sum_num / 10
 
 
 def do_predict(x_train, y_train, x_test, y_test, times_num, flag='ExtraTrees'):
@@ -357,6 +480,69 @@ def do_predict(x_train, y_train, x_test, y_test, times_num, flag='ExtraTrees'):
     result.writelines(result_content)
     result.close()
     return score
+
+
+def do_draw_predict_auc(x_train, y_train, x_test, y_test, times_num, tag, flag='ExtraTrees'):
+    """
+    画出预测模型上的AUC图
+    :param x_train: 样本集中的特征向量列表
+    :param y_train: 样本集中的标签列表
+    :param x_test: 测试集中的特征向量列表
+    :param y_test: 测试集中的标签列表
+    :param times_num: 模型的n_estimators值
+    :param tag: 标签名
+    :param flag: 模型指示词
+    :return:
+    """
+    y_train_auc = []
+    y_test_auc = []
+    for tag_train in y_train:
+        if configs['Tags'][tag] == tag_train:
+            y_train_auc.append(1)
+        else:
+            y_train_auc.append(0)
+
+    for tag_test in y_test:
+        if configs['Tags'][tag] == tag_test:
+            y_test_auc.append(1)
+        else:
+            y_test_auc.append(0)
+    plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+    colors = ['magenta', 'green', 'red', 'cyan', 'blue', 'black']
+    j = 0
+    for i in range(10, 101, 20):
+        clf = ExtraTreesClassifier(n_estimators=i)
+
+        if flag == 'RandomForest':
+            clf = RandomForestClassifier(n_estimators=10)
+        elif flag == 'DecisionTree':
+            clf = DecisionTreeClassifier()
+        elif flag == 'SVM':
+            clf = svm.SVC()
+
+        clf.fit(x_train, y_train_auc)
+        y_pred = clf.predict(x_test)
+        fpr, tpr, threshold = roc_curve(y_test_auc, y_pred)
+        roc_auc = auc(fpr, tpr)
+        #  假正率为横坐标，真正率为纵坐标做曲线
+        plt.plot(fpr, tpr, color=colors[j],
+             lw=2, label='n_estimators %d ROC curve (area = %0.2f)' %(i, roc_auc))
+        j += 1
+    # y_score = clf.decision_function(x_test)
+    # score = clf.score(x_test, y_test_auc)
+    # print(y_pred)
+
+
+    # plt.figure()
+    # lw = 2
+    # plt.figure(figsize=(10, 10))
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title(tag + 'Receiver operating characteristic')
+    plt.legend(loc="lower right")
+    plt.show()
 
 
 def do_predict_by_cv_and_norm(x_train, y_train, x_test, y_test, times_num, flag='ExtraTrees'):
@@ -419,8 +605,60 @@ def do_predict_by_cv_and_norm(x_train, y_train, x_test, y_test, times_num, flag=
     return score
 
 
+def do_draw_train_score(flag):
+    """
+    画训练集上评分准确率图
+    :param flag: 标签名
+    :return:
+    """
+    n = [62, 82, 92, 102, 112, 122]
+    scores = []
+
+    tag_and_score_init = get_tag_and_score(configs['new_scores_path'], 2, 1193, flag)
+    tag_and_score_add20 = get_tag_and_score(configs['new_scores_path'], 2, 1614, flag)
+    tag_and_score_add30 = get_tag_and_score(configs['new_scores_path'], 2, 1824, flag)
+    tag_and_score_add40 = get_tag_and_score(configs['new_scores_path'], 2, 2005, flag)
+    tag_and_score_add50 = get_tag_and_score(configs['new_scores_path'], 2, 2191, flag)
+    tag_and_score_add60 = get_tag_and_score(configs['new_scores_path'], 2, 2414, flag)
+
+    scores.append(do_train_regression(
+        tag_and_score_init[2], tag_and_score_init[1], 0))
+    scores.append(do_train_regression(
+        tag_and_score_add20[2], tag_and_score_add20[1], 0))
+    scores.append(do_train_regression(
+        tag_and_score_add30[2], tag_and_score_add30[1], 0))
+    scores.append(do_train_regression(
+        tag_and_score_add40[2], tag_and_score_add40[1], 0))
+    scores.append(do_train_regression(
+        tag_and_score_add50[2], tag_and_score_add50[1], 0))
+    scores.append(do_train_regression(
+        tag_and_score_add60[2], tag_and_score_add60[1], 0))
+
+    pl.plot(n, scores, 'g.-')
+    pl.title('Linear ' + flag + ' train result')
+    pl.xlabel('train set size')
+    pl.ylabel('score')
+    pl.show()
+
+    # pl.plot(n, score_reason, 'r.-')
+    # pl.plot(n, score_concession, 'y.-')
+    # pl.plot(n, score_conclusion, 'k.-')
+    # # pl.plot(n, score_add50, 'c.-')
+    # # pl.plot(n, score_add60, 'b.-')
+    # green_patch = mpatches.Patch(color='green', label='introduction score')
+    # red_patch = mpatches.Patch(color='red', label='reason score')
+    # yellow_patch = mpatches.Patch(color='yellow', label='concession score')
+    # black_patch = mpatches.Patch(color='black', label='conclusion score')
+    # # cyan_patch = mpatches.Patch(color='cyan', label='add 50 train set')
+    # # blue_patch = mpatches.Patch(color='blue', label='add 60 train set')
+    # pl.legend(handles=[green_patch, red_patch, yellow_patch, black_patch])
+    # pl.title('Linear train result')
+    # pl.xlabel('train set size')
+    # pl.ylabel('score')
+    # pl.show()
+
 params = get_feature_vector_and_tag()
-# testParams = get_test_feature_vector_and_tag()
+testParams = get_test_feature_vector_and_tag()
 # doTrain(params[0], params[1], 'ExtraTrees')
 # doTrainByTestSet(params[0], params[1], testParams[0], testParams[1], 'ExtraTrees')
 # doTrainByCrossValidation(params[0], params[1], 10, 'ExtraTrees')
@@ -432,17 +670,17 @@ compare = {}
 
 # xs = []
 # ys = []
-for index in range(10, 101, 5):
+# for index in range(10, 101, 5):
     # xs.append(index)
     # scores = 0
     # for j in range(3):
     #     score = do_predict(params[0], params[1], testParams[0], testParams[1], index, 'ExtraTrees')
     #     scores += score
-    s = do_train_by_cv(params[0], params[1], index, 'ExtraTrees')
+    # s = do_train_by_cv(params[0], params[1], index, 'ExtraTrees')
     # ys.append(scores/3)
     # ys.append(s)
     # print('index[' + str(index) + ']:' + str(scores/3))
-    print('index[' + str(index) + ']:' + str(s))
+    # print('index[' + str(index) + ']:' + str(s))
 
 # scores = 0
 # for j in range(10):
@@ -453,72 +691,21 @@ for index in range(10, 101, 5):
 # sortedResult = sorted(compare.items(), key=lambda d: -d[1])
 # print(sortedResult)
 # print(scores / 30)
-#
 
-train_result_init_x = [10, 15, 20, 25, 30, 35, 40, 45, 50,
-                       55, 60, 65, 70, 75, 80, 85, 90, 95, 100]
-train_result_init_y = [0.9224, 0.9384, 0.9352, 0.9376, 0.9488, 0.9384, 0.944, 0.9472, 0.948,
-                       0.9488, 0.9432, 0.9456, 0.9552, 0.9528, 0.9488, 0.952, 0.9512, 0.9504, 0.9528]
-train_result_add20_y = [0.92012195122, 0.935365853659, 0.945731707317, 0.949390243902, 0.949390243902,
-                        0.948780487805, 0.955487804878, 0.961585365854, 0.95243902439, 0.956097560976,
-                        0.957317073171, 0.959146341463, 0.956097560976, 0.95243902439, 0.956707317073,
-                        0.964024390244, 0.959146341463, 0.958536585366, 0.958536585366]
-train_result_add30_y = [0.921621621622, 0.941081081081, 0.942162162162, 0.953513513514,
-                        0.952432432432, 0.955135135135, 0.957297297297, 0.954054054054,
-                        0.955135135135, 0.962162162162, 0.961081081081, 0.963783783784,
-                        0.963783783784, 0.965405405405, 0.958918918919, 0.963783783784,
-                        0.961081081081, 0.961081081081, 0.962162162162]
-train_result_add40_y = [0.919704433498, 0.928078817734, 0.93842364532, 0.946305418719,
-                        0.940886699507, 0.950738916256, 0.956157635468, 0.953694581281,
-                        0.953201970443, 0.957142857143, 0.951724137931, 0.955665024631,
-                        0.95763546798, 0.957142857143, 0.954679802956, 0.957142857143,
-                        0.955665024631, 0.955665024631, 0.956650246305]
-test_result_init_y = [0.787179487179, 0.813675213675, 0.847863247863, 0.833333333333,
-                      0.851282051282, 0.84188034188, 0.866666666667, 0.855555555556,
-                      0.857264957265, 0.861538461538, 0.861538461538, 0.866666666667,
-                      0.866666666667, 0.860683760684, 0.862393162393, 0.87094017094,
-                      0.870085470085, 0.867521367521, 0.875213675214]
-test_result_add20_y = [0.817094017094, 0.823076923077, 0.825641025641, 0.84188034188,
-                       0.84188034188, 0.855555555556, 0.851282051282, 0.855555555556,
-                       0.87094017094, 0.865811965812, 0.855555555556, 0.866666666667,
-                       0.868376068376, 0.870085470085, 0.87264957265, 0.873504273504,
-                       0.867521367521, 0.87264957265, 0.862393162393]
-test_result_add30_y = [0.791452991453, 0.834188034188, 0.857264957265, 0.851282051282,
-                       0.857264957265, 0.85811965812, 0.859829059829, 0.860683760684,
-                       0.866666666667, 0.85811965812, 0.874358974359, 0.867521367521,
-                       0.880341880342, 0.87094017094, 0.875213675214, 0.877777777778,
-                       0.889743589744, 0.876068376068, 0.876923076923]
-test_result_add40_y = [0.801709401709, 0.845299145299, 0.861538461538, 0.849572649573,
-                       0.867521367521, 0.85811965812, 0.882051282051, 0.873504273504,
-                       0.878632478632, 0.879487179487, 0.87264957265, 0.88547008547,
-                       0.874358974359, 0.878632478632, 0.882051282051, 0.887179487179,
-                       0.876068376068, 0.88547008547, 0.877777777778]
-# pl.plot(train_result_init_x, train_result_init_y, 'g.-')
-# pl.plot(train_result_init_x, train_result_add20_y, 'r.-')
-# pl.plot(train_result_init_x, train_result_add30_y, 'y.-')
-# pl.plot(train_result_init_x, train_result_add40_y, 'k.-')
-# green_patch = mpatches.Patch(color='green', label='init 62 train set')
-# red_patch = mpatches.Patch(color='red', label='add 20 train set')
-# yellow_patch = mpatches.Patch(color='yellow', label='add 30 train set')
-# black_patch = mpatches.Patch(color='black', label='add 40 train set')
-# pl.legend(handles=[green_patch, red_patch, yellow_patch, black_patch])
-# pl.title('ExtraTrees train result')
-# pl.plot(train_result_init_x, test_result_init_y, 'g.-')
-# pl.plot(train_result_init_x, test_result_add20_y, 'r.-')
-# pl.plot(train_result_init_x, test_result_add30_y, 'y.-')
-# pl.plot(train_result_init_x, test_result_add40_y, 'k.-')
-# green_patch = mpatches.Patch(color='green', label='init 62 train set')
-# red_patch = mpatches.Patch(color='red', label='add 20 train set')
-# yellow_patch = mpatches.Patch(color='yellow', label='add 30 train set')
-# black_patch = mpatches.Patch(color='black', label='add 40 train set')
-# pl.legend(handles=[green_patch, red_patch, yellow_patch, black_patch])
-# pl.title('ExtraTrees test result')
-# pl.xlabel('n_estimators')
-# pl.ylabel('score')
+# 判断结构评分的数据分布
+# y_add60 = get_tag_and_score(configs['allFeatures_add60_Path'], 'Conclusion')[1]
+# print(y_add60)
+# pl.scatter(y_add60, y_add60, c='green')
+# pl.title('Conclusion Scatter Figure')
+# pl.xlabel('x')
+# pl.ylabel('y')
+# pl.legend()
+# pl.grid(True)
 # pl.show()
-# do_train_by_cv(params[0], params[1], 60, 'ExtraTrees')
 
-
+# do_draw_train_auc(params[0], params[1], 80, '<EG>')
+do_draw_predict_auc(params[0], params[1], testParams[0], testParams[1], 0, '<TST>')
+# do_draw_train_score('Reason')
 # 计算程序运行总时间(秒)
-elapsed = (datetime.now() - start).seconds
+elapsed = (datetime.now() - startTime).seconds
 print('Time used : ', elapsed)
